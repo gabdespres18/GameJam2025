@@ -666,6 +666,9 @@ MonoBehaviour:
   movementSprint: 5
   movementWalk: 2
   mouseSens: 10
+  idle: 0
+  walking: 0
+  running: 0
 --- !u!54 &1579495956
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -813,6 +816,7 @@ GameObject:
   - component: {fileID: 1880964535}
   - component: {fileID: 1880964534}
   - component: {fileID: 1880964533}
+  - component: {fileID: 1880964537}
   m_Layer: 0
   m_Name: Clone
   m_TagString: Untagged
@@ -909,6 +913,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1880964537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880964532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a3391224435f5f48a6c0eecf64ad1f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initPos: {fileID: 0}
+  startReplay: 0
+  movementSprint: 5
+  movementWalk: 2
+  mouseSens: 5
 --- !u!1 &2129317188
 GameObject:
   m_ObjectHideFlags: 0
@@ -1026,5 +1047,5 @@ SceneRoots:
   - {fileID: 1579495954}
   - {fileID: 2129317192}
   - {fileID: 840990978}
-  - {fileID: 1880964536}
   - {fileID: 1774665523}
+  - {fileID: 1880964536}
