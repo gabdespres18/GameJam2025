@@ -45,88 +45,92 @@ public class Player : MonoBehaviour
     }
 
 
-
-    List<Vector3> positions;
-
     public Transform player;
     public Transform initPos;
-    public Transform AI;
-    public Rigidbody rb;
     public bool record;
     public bool startReplay;
 
-    public float speedH = 2.0f;
-    public float speedV = 2.0f;
+    public float movementSprint = 5.0f;
+    public float movementWalk = 2.0f;
+    public float mouseSens = 5.0f;
 
     private bool recording;
-    private float yaw = 0.0f;
-    private float pitch = 0.0f;
+    private float rotLeftRight;
+    private float rotUpDown;
+    private float xRotation = 0f;
 
     private List<Clone> clones;
     private int nbClones = 0;
     private int i;
     private int j;
+    private float multiplier = 0.0f;
 
-    
+
+
     void Start()
     {
         initPos = transform;
 
         clones = new List<Clone>();
-        positions = new List<Vector3>();
+
+        //Screen.lockCursor = true;
 
         i = 0;
     }
 
     void FixedUpdate()
     {
-        Vector2 movement = Vector2.zero;
+        Vector3 movement = Vector3.zero;
 
-        if (Input.GetKey(KeyCode.S))
-        {
-            movement += Vector2.down;
+
+        /********** Live **********/
+
+        if (!startReplay)
+        { 
+            if (Input.GetKey(KeyCode.S))
+            {
+                movement += Vector3.back;
+            }
+
+            if (Input.GetKey(KeyCode.W))
+            {
+                movement += Vector3.forward;
+            }
+
+            if (Input.GetKey(KeyCode.D))
+            {
+                movement += Vector3.right;
+            }
+
+            if (Input.GetKey(KeyCode.A))
+            {
+                movement += Vector3.left;
+            }
+
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                multiplier = movementSprint;
+            }
+            else
+            {
+                multiplier = movementWalk;
+            }
+
+            rotLeftRight = Input.GetAxis("Mouse X") * mouseSens;
+            rotUpDown = Input.GetAxis("Mouse Y") * mouseSens;
         }
 
-        if (Input.GetKey(KeyCode.W))
+
+        /********** Record **********/
+
+        if (record)
         {
-            movement += Vector2.up;
-        }
+            if(!recording)
+            {
+                clones.Add(new Clone(initPos));
+                recording = true;
+            }
 
-        if (Input.GetKey(KeyCode.D))
-        {
-            movement += Vector2.right;
-        }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            movement += Vector2.left;
-        }
-
-        
-
-        if (record && !recording)
-        {
-            //CreateClone(initPos);
-
-            clones.Add(new Clone(initPos));
-
-            Debug.Log(clones.Count);
-
-            clones[0].inputs.Add(new Inputs(
-                Input.GetKey(KeyCode.W), 
-                Input.GetKey(KeyCode.A), 
-                Input.GetKey(KeyCode.S), 
-                Input.GetKey(KeyCode.D), 
-                Input.GetKey(KeyCode.LeftShift), 
-                Input.GetKey(KeyCode.LeftControl), 
-                Input.GetKey(KeyCode.Mouse0),
-                Input.GetAxis("Mouse X"),
-                Input.GetAxis("Mouse Y")));
-            recording = true;
-            i++;
-        }
-        else if(record && recording)
-        {
             clones[0].inputs.Add(new Inputs(
                 Input.GetKey(KeyCode.W),
                 Input.GetKey(KeyCode.A),
@@ -135,9 +139,8 @@ public class Player : MonoBehaviour
                 Input.GetKey(KeyCode.LeftShift),
                 Input.GetKey(KeyCode.LeftControl),
                 Input.GetKey(KeyCode.Mouse0),
-                Input.GetAxis("Mouse X"), //- clones[nbClones].inputs[i - 1].MouseX,
-                Input.GetAxis("Mouse Y"))); //- clones[nbClones].inputs[i - 1].MouseY));
-            Record();
+                Input.GetAxis("Mouse X"),
+                Input.GetAxis("Mouse Y")));
             i++;
         }
         else if(!record && recording)
@@ -147,38 +150,44 @@ public class Player : MonoBehaviour
 
             j = 0;
         }
-        else
-        {
-            /*if (startReplay)
-            {
-                Replay(i);
 
-            }*/
-        }
+        /********** Replay **********/
 
         if (startReplay)
         {
-            if (j <= i-1)
+            if (j <= i - 1)
             {
                 if (clones[0].inputs[j].s)
                 {
-                    movement += Vector2.down;
+                    movement += Vector3.back;
                 }
 
                 if (clones[0].inputs[j].w)
                 {
-                    movement += Vector2.up;
+                    movement += Vector3.forward;
                 }
 
                 if (clones[0].inputs[j].d)
                 {
-                    movement += Vector2.right;
+                    movement += Vector3.right;
                 }
 
                 if (clones[0].inputs[j].a)
                 {
-                    movement += Vector2.left;
+                    movement += Vector3.left;
                 }
+
+                if (clones[0].inputs[j].shift)
+                {
+                    multiplier = movementSprint;
+                }
+                else
+                {
+                    multiplier = movementWalk;
+                }
+
+                rotLeftRight = clones[0].inputs[j].MouseX * mouseSens;
+                rotUpDown = clones[0].inputs[j].MouseY * mouseSens;
 
                 j++;
             }
@@ -186,33 +195,21 @@ public class Player : MonoBehaviour
                 startReplay = false;
         }
 
-        Vector2 velocity = movement.normalized * 2.0f;
-        rb.linearVelocity = velocity;
-        /*yaw += speedH * Input.GetAxis("Mouse X");
-        pitch -= speedV * Input.GetAxis("Mouse Y");
 
-        transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);*/
+        /********** Movement **********/
 
+        // Change la position
+        transform.Translate(movement * multiplier * Time.deltaTime, Space.Self);
 
-        /*Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.z, 10);
-        Vector3 lookPos = Camera.main.ScreenToWorldPoint(mousePos);
-        lookPos = lookPos - transform.position;
-        float angle = Mathf.Atan2(lookPos.z, lookPos.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.down); // Turns Right
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.up); //Turns Left*/
-
-        //positions.Insert(new Vector3(speedH * Input.GetAxis("Mouse X"), Input.mousePosition.z, 0));
+        // Change la rotation gauche droite du player
+        transform.Rotate(0,  rotLeftRight, 0);
+        
+        // Change la rotation haut bas de la caméra
+        xRotation -= rotUpDown;
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        Camera.main.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
     }
 
-    void Record()
-    {
-        positions.Add(player.position);
-    }
-
-    void Replay(int i)
-    {
-        AI.position = positions[i];
-    }
 
     void CreateClone(Transform pos)
     {

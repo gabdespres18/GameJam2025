@@ -1,16 +1,224 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class Clone : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    struct Clone
     {
-        
+        public List<Inputs> inputs;
+        public Transform initialPos;
+
+        public Clone(Transform pos)
+        {
+            this.inputs = new List<Inputs>();
+            this.initialPos = pos;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    struct Inputs
     {
-        
+        public bool w;
+        public bool a;
+        public bool s;
+        public bool d;
+
+        public bool shift;
+        public bool ctrl;
+        public bool interact;
+
+        public float MouseX;
+        public float MouseY;
+
+        public Inputs(bool w, bool a, bool s, bool d, bool shift, bool ctrl, bool interact, float MouseX, float MouseY)
+        {
+            this.w = w;
+            this.a = a;
+            this.s = s;
+            this.d = d;
+            this.shift = shift;
+            this.ctrl = ctrl;
+            this.interact = interact;
+            this.MouseX = MouseX;
+            this.MouseY = MouseY;
+        }
     }
+
+
+    public Transform player;
+    public Transform initPos;
+    public bool record;
+    public bool startReplay;
+
+    public float movementSprint = 5.0f;
+    public float movementWalk = 2.0f;
+    public float mouseSens = 5.0f;
+
+    private bool recording;
+    private float rotLeftRight;
+    private float rotUpDown;
+    private float xRotation = 0f;
+
+    private List<Clone> clones;
+    private int nbClones = 0;
+    private int i;
+    private int j;
+    private float multiplier = 0.0f;
+
+
+
+    void Start()
+    {
+        initPos = transform;
+
+        clones = new List<Clone>();
+
+        //Screen.lockCursor = true;
+
+        i = 0;
+    }
+
+    void FixedUpdate()
+    {
+        Vector3 movement = Vector3.zero;
+
+
+        /********** Live **********/
+
+        if (!startReplay)
+        {
+            if (Input.GetKey(KeyCode.S))
+            {
+                movement += Vector3.back;
+            }
+
+            if (Input.GetKey(KeyCode.W))
+            {
+                movement += Vector3.forward;
+            }
+
+            if (Input.GetKey(KeyCode.D))
+            {
+                movement += Vector3.right;
+            }
+
+            if (Input.GetKey(KeyCode.A))
+            {
+                movement += Vector3.left;
+            }
+
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                multiplier = movementSprint;
+            }
+            else
+            {
+                multiplier = movementWalk;
+            }
+
+            rotLeftRight = Input.GetAxis("Mouse X") * mouseSens;
+            rotUpDown = Input.GetAxis("Mouse Y") * mouseSens;
+        }
+
+
+        /********** Record **********/
+
+        if (record)
+        {
+            if (!recording)
+            {
+                clones.Add(new Clone(initPos));
+                recording = true;
+            }
+
+            clones[0].inputs.Add(new Inputs(
+                Input.GetKey(KeyCode.W),
+                Input.GetKey(KeyCode.A),
+                Input.GetKey(KeyCode.S),
+                Input.GetKey(KeyCode.D),
+                Input.GetKey(KeyCode.LeftShift),
+                Input.GetKey(KeyCode.LeftControl),
+                Input.GetKey(KeyCode.Mouse0),
+                Input.GetAxis("Mouse X"),
+                Input.GetAxis("Mouse Y")));
+            i++;
+        }
+        else if (!record && recording)
+        {
+            recording = false;
+            startReplay = true;
+
+            j = 0;
+        }
+
+        /********** Replay **********/
+
+        if (startReplay)
+        {
+            if (j <= i - 1)
+            {
+                if (clones[0].inputs[j].s)
+                {
+                    movement += Vector3.back;
+                }
+
+                if (clones[0].inputs[j].w)
+                {
+                    movement += Vector3.forward;
+                }
+
+                if (clones[0].inputs[j].d)
+                {
+                    movement += Vector3.right;
+                }
+
+                if (clones[0].inputs[j].a)
+                {
+                    movement += Vector3.left;
+                }
+
+                if (clones[0].inputs[j].shift)
+                {
+                    multiplier = movementSprint;
+                }
+                else
+                {
+                    multiplier = movementWalk;
+                }
+
+                rotLeftRight = clones[0].inputs[j].MouseX * mouseSens;
+                rotUpDown = clones[0].inputs[j].MouseY * mouseSens;
+
+                j++;
+            }
+            else
+                startReplay = false;
+        }
+
+
+        /********** Movement **********/
+
+        // Change la position
+        transform.Translate(movement * multiplier * Time.deltaTime, Space.Self);
+
+        // Change la rotation gauche droite du player
+        transform.Rotate(0, rotLeftRight, 0);
+
+        // Change la rotation haut bas de la caméra
+        xRotation -= rotUpDown;
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        Camera.main.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+    }
+
+
+    void CreateClone(Transform pos)
+    {
+        clones.Add(new Clone(pos));
+        nbClones++;
+    }
+    void AddInput()
+    {
+
+    }
+
 }
