@@ -9,10 +9,10 @@ FBXHeaderExtension:  {
 		Year: 2025
 		Month: 10
 		Day: 18
-		Hour: 9
-		Minute: 11
-		Second: 2
-		Millisecond: 388
+		Hour: 19
+		Minute: 5
+		Second: 20
+		Millisecond: 499
 	}
 	Creator: "FBX SDK/FBX Plugins version 2020.0.1"
 	OtherFlags:  {
@@ -31,20 +31,20 @@ FBXHeaderExtension:  {
 			Comment: ""
 		}
 		Properties70:  {
-			P: "DocumentUrl", "KString", "Url", "", "Z:\_GameJam2025\Environment\export\SM_Wall_01"
-			P: "SrcDocumentUrl", "KString", "Url", "", "Z:\_GameJam2025\Environment\export\SM_Wall_01"
+			P: "DocumentUrl", "KString", "Url", "", "Z:\_GameJam2025\Environment\export\SM_Wall_01.fbx"
+			P: "SrcDocumentUrl", "KString", "Url", "", "Z:\_GameJam2025\Environment\export\SM_Wall_01.fbx"
 			P: "Original", "Compound", "", ""
 			P: "Original|ApplicationVendor", "KString", "", "", "SideFX Software"
 			P: "Original|ApplicationName", "KString", "", "", "Houdini"
 			P: "Original|ApplicationVersion", "KString", "", "", "20.0.896"
-			P: "Original|DateTime_GMT", "DateTime", "", "", "18/10/2025 13:11:02.382"
-			P: "Original|FileName", "KString", "", "", "Z:\_GameJam2025\Environment\export\SM_Wall_01"
+			P: "Original|DateTime_GMT", "DateTime", "", "", "18/10/2025 23:05:20.499"
+			P: "Original|FileName", "KString", "", "", "Z:\_GameJam2025\Environment\export\SM_Wall_01.fbx"
 			P: "LastSaved", "Compound", "", ""
 			P: "LastSaved|ApplicationVendor", "KString", "", "", "SideFX Software"
 			P: "LastSaved|ApplicationName", "KString", "", "", "Houdini"
 			P: "LastSaved|ApplicationVersion", "KString", "", "", "20.0.896"
-			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "18/10/2025 13:11:02.382"
-			P: "Original|ApplicationActiveProject", "KString", "", "", "C:\Users\beaf36"
+			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "18/10/2025 23:05:20.499"
+			P: "Original|ApplicationActiveProject", "KString", "", "", "Z:\_GameJam2025\Environment"
 			P: "Original|ApplicationNativeFile", "KString", "", "", "Z:\_GameJam2025\Environment\EnvironmentModeling_v01.hipnc"
 		}
 	}
@@ -80,7 +80,7 @@ GlobalSettings:  {
 
 Documents:  {
 	Count: 1
-	Document: 8265130240, "", "Scene" {
+	Document: 184897832960, "", "Scene" {
 		Properties70:  {
 			P: "SourceObject", "object", "", ""
 			P: "ActiveAnimStackName", "KString", "", "", ""
@@ -201,12 +201,12 @@ Definitions:  {
 ;------------------------------------------------------------------
 
 Objects:  {
-	Geometry: 8264988928, "Geometry::Wall", "Mesh" {
-		Vertices: *12 {
-			a: 0,3,-0.75,0,0,-0.75,0,3,0.75,0,0,0.75
+	Geometry: 184070433984, "Geometry::Wall", "Mesh" {
+		Vertices: *24 {
+			a: -0.75,3,-0.75,-0.75,0,-0.75,-0.75,3,0.75,-0.75,0,0.75,0.75,3,-0.75,0.75,0,-0.75,0.75,0,0.75,0.75,3,0.75
 		} 
-		PolygonVertexIndex: *4 {
-			a: 2,3,1,-1
+		PolygonVertexIndex: *16 {
+			a: 1,3,2,-1,7,6,5,-5,4,5,1,-1,6,7,2,-4
 		} 
 		GeometryVersion: 124
 		LayerElementUV: 0 {
@@ -215,10 +215,10 @@ Objects:  {
 			MappingInformationType: "ByPolygonVertex"
 			ReferenceInformationType: "IndexToDirect"
 			UV: *8 {
-				a: 0.250010222196579,0.999002993106842,0.250010222196579,0.0009765625,0.7490234375,0.0009765625,0.7490234375,0.999002993106842
+				a: 0.250010251998901,0.0009765625,0.7490234375,0.0009765625,0.7490234375,0.999002993106842,0.250010251998901,0.999002993106842
 			} 
-			UVIndex: *4 {
-				a: 0,1,2,3
+			UVIndex: *16 {
+				a: 0,1,2,3,3,0,1,2,3,0,1,2,3,0,1,2
 			} 
 		}
 		LayerElementUserData: 0 {
@@ -231,7 +231,7 @@ Objects:  {
 				UserDataType: "Float"
 				UserDataName: "coverage"
 				UserData: *1 {
-					a: 0.4980488
+					a: 0.4980283
 				} 
 			}
 			UserDataArray:  {
@@ -254,7 +254,7 @@ Objects:  {
 			}
 		}
 	}
-	Model: 8263969536, "Model::Wall", "Mesh" {
+	Model: 184676526848, "Model::Wall", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
@@ -273,10 +273,10 @@ Objects:  {
 Connections:  {
 	
 	;Model::Wall, Model::RootNode
-	C: "OO",8263969536,0
+	C: "OO",184676526848,0
 	
 	;Geometry::Wall, Model::Wall
-	C: "OO",8264988928,8263969536
+	C: "OO",184070433984,184676526848
 }
 ;Takes section
 ;----------------------------------------------------
