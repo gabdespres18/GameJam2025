@@ -10,9 +10,9 @@ FBXHeaderExtension:  {
 		Month: 10
 		Day: 18
 		Hour: 15
-		Minute: 31
-		Second: 44
-		Millisecond: 973
+		Minute: 49
+		Second: 21
+		Millisecond: 275
 	}
 	Creator: "FBX SDK/FBX Plugins version 2020.0.1"
 	OtherFlags:  {
@@ -37,13 +37,13 @@ FBXHeaderExtension:  {
 			P: "Original|ApplicationVendor", "KString", "", "", "SideFX Software"
 			P: "Original|ApplicationName", "KString", "", "", "Houdini"
 			P: "Original|ApplicationVersion", "KString", "", "", "20.0.896"
-			P: "Original|DateTime_GMT", "DateTime", "", "", "18/10/2025 19:31:44.972"
+			P: "Original|DateTime_GMT", "DateTime", "", "", "18/10/2025 19:49:21.275"
 			P: "Original|FileName", "KString", "", "", "Z:\_GameJam2025\Environment\export\SM_CeilingGrid_01"
 			P: "LastSaved", "Compound", "", ""
 			P: "LastSaved|ApplicationVendor", "KString", "", "", "SideFX Software"
 			P: "LastSaved|ApplicationName", "KString", "", "", "Houdini"
 			P: "LastSaved|ApplicationVersion", "KString", "", "", "20.0.896"
-			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "18/10/2025 19:31:44.972"
+			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "18/10/2025 19:49:21.275"
 			P: "Original|ApplicationActiveProject", "KString", "", "", "Z:\_GameJam2025\Environment"
 			P: "Original|ApplicationNativeFile", "KString", "", "", "Z:\_GameJam2025\Environment\EnvironmentModeling_v01.hipnc"
 		}
@@ -80,7 +80,7 @@ GlobalSettings:  {
 
 Documents:  {
 	Count: 1
-	Document: 183291554560, "", "Scene" {
+	Document: 182852099840, "", "Scene" {
 		Properties70:  {
 			P: "SourceObject", "object", "", ""
 			P: "ActiveAnimStackName", "KString", "", "", ""
@@ -198,10 +198,10 @@ Definitions:  {
 ;------------------------------------------------------------------
 
 Objects:  {
-	NodeAttribute: 183290752512, "NodeAttribute::Ceiling", "Null" {
+	NodeAttribute: 182851953920, "NodeAttribute::Ceiling", "Null" {
 		TypeFlags: "Null"
 	}
-	Model: 183291612032, "Model::Ceiling", "Null" {
+	Model: 182851709696, "Model::Ceiling", "Null" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
@@ -221,10 +221,10 @@ Objects:  {
 Connections:  {
 	
 	;Model::Ceiling, Model::RootNode
-	C: "OO",183291612032,0
+	C: "OO",182851709696,0
 	
 	;NodeAttribute::Ceiling, Model::Ceiling
-	C: "OO",183290752512,183291612032
+	C: "OO",182851953920,182851709696
 }
 ;Takes section
 ;----------------------------------------------------
