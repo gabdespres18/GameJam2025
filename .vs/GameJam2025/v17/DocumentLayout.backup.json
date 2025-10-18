@@ -19,12 +19,21 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+<<<<<<< HEAD
+              "Title": "CountdownClock.cs",
+              "DocumentMoniker": "C:\\Users\\robin\\Desktop\\GameJamQC\\GameJam2025\\Assets\\Scripts\\Clock\\CountdownClock.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Clock\\CountdownClock.cs",
+              "ToolTip": "C:\\Users\\robin\\Desktop\\GameJamQC\\GameJam2025\\Assets\\Scripts\\Clock\\CountdownClock.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Clock\\CountdownClock.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAYwCAAAAA3AAAAAAAAAA==",
+=======
               "Title": "Player.cs",
               "DocumentMoniker": "C:\\Users\\User\\GameJam2025\\Assets\\Scripts\\Player.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Player.cs",
               "ToolTip": "C:\\Users\\User\\GameJam2025\\Assets\\Scripts\\Player.cs",
               "RelativeToolTip": "Assets\\Scripts\\Player.cs",
               "ViewState": "AgIAAB4AAAAAAAAAAAAAADgAAAAtAAAAAAAAAA==",
+>>>>>>> c5caeb50b0f527b59499895b13743e2b9770d23d
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-18T02:07:51.406Z",
               "EditorCaption": ""
