@@ -2,6 +2,34 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+public struct Inputs
+{
+    public bool w;
+    public bool a;
+    public bool s;
+    public bool d;
+
+    public bool shift;
+    public bool ctrl;
+    public bool interact;
+
+    public float MouseX;
+    public float MouseY;
+
+    public Inputs(bool w, bool a, bool s, bool d, bool shift, bool ctrl, bool interact, float MouseX, float MouseY)
+    {
+        this.w = w;
+        this.a = a;
+        this.s = s;
+        this.d = d;
+        this.shift = shift;
+        this.ctrl = ctrl;
+        this.interact = interact;
+        this.MouseX = MouseX;
+        this.MouseY = MouseY;
+    }
+}
+
 public class Player : MonoBehaviour
 {
     struct Clone
@@ -16,34 +44,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    struct Inputs
-    {
-        public bool w;
-        public bool a;
-        public bool s;
-        public bool d;
-
-        public bool shift;
-        public bool ctrl;
-        public bool interact;
-
-        public float MouseX;
-        public float MouseY;
-
-        public Inputs(bool w, bool a, bool s, bool d, bool shift, bool ctrl, bool interact, float MouseX, float MouseY)
-        {
-            this.w = w;
-            this.a = a;
-            this.s = s;
-            this.d = d;
-            this.shift = shift;
-            this.ctrl = ctrl;
-            this.interact = interact;
-            this.MouseX = MouseX;
-            this.MouseY = MouseY;
-        }
-    }
-
 
     public Transform player;
     public Transform initPos;
@@ -53,6 +53,13 @@ public class Player : MonoBehaviour
     public float movementSprint = 5.0f;
     public float movementWalk = 2.0f;
     public float mouseSens = 5.0f;
+
+    public bool isWalking;
+    public bool isRunning;
+    public bool isLeftTurn;
+    public bool isRightTurn;
+
+    public Animator animator;
 
     private bool recording;
     private float rotLeftRight;
@@ -69,9 +76,13 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        initPos = transform;
+        //initPos = transform;
+        transform.position = initPos.position;
+        transform.rotation = initPos.rotation;
 
         clones = new List<Clone>();
+
+        animator = GetComponent<Animator>();
 
         //Screen.lockCursor = true;
 
@@ -110,11 +121,17 @@ public class Player : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 multiplier = movementSprint;
+                isRunning = true;
             }
             else
             {
                 multiplier = movementWalk;
+                isRunning = false;
             }
+            if (movement != Vector3.zero)
+                isWalking = true;
+            else
+                isWalking = false;
 
             rotLeftRight = Input.GetAxis("Mouse X") * mouseSens;
             rotUpDown = Input.GetAxis("Mouse Y") * mouseSens;
@@ -180,11 +197,17 @@ public class Player : MonoBehaviour
                 if (clones[0].inputs[j].shift)
                 {
                     multiplier = movementSprint;
+                    isRunning = true;
                 }
                 else
                 {
                     multiplier = movementWalk;
+                    isRunning = false;
                 }
+                if (movement != Vector3.zero)
+                    isWalking = true;
+                else
+                    isWalking = false;
 
                 rotLeftRight = clones[0].inputs[j].MouseX * mouseSens;
                 rotUpDown = clones[0].inputs[j].MouseY * mouseSens;
@@ -208,6 +231,35 @@ public class Player : MonoBehaviour
         xRotation -= rotUpDown;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
         Camera.main.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+
+
+        /********** Animator **********/
+
+        if (rotLeftRight > 0.2f)
+        {
+            animator.SetBool("isRightTurn", true);
+            animator.SetBool("isLeftTurn", false);
+            isRightTurn = true;
+            isLeftTurn = false;
+        }
+        else if (rotLeftRight < -0.2f)
+        {
+            animator.SetBool("isRightTurn", false);
+            animator.SetBool("isLeftTurn", true);
+            isLeftTurn = true;
+            isRightTurn = false;
+        }
+        else
+        {
+            animator.SetBool("isRightTurn", false);
+            animator.SetBool("isLeftTurn", false);
+            isLeftTurn = false;
+            isRightTurn = false;
+        }
+
+        animator.SetBool("isWalking", isWalking);
+        animator.SetBool("isRunning", isRunning);
+
     }
 
 

@@ -4,63 +4,26 @@ using System.Collections.Generic;
 
 public class Clone : MonoBehaviour
 {
-    struct Clone
-    {
-        public List<Inputs> inputs;
-        public Transform initialPos;
+    private List<Inputs> inputs;
 
-        public Clone(Transform pos)
-        {
-            this.inputs = new List<Inputs>();
-            this.initialPos = pos;
-        }
-    }
-
-    struct Inputs
-    {
-        public bool w;
-        public bool a;
-        public bool s;
-        public bool d;
-
-        public bool shift;
-        public bool ctrl;
-        public bool interact;
-
-        public float MouseX;
-        public float MouseY;
-
-        public Inputs(bool w, bool a, bool s, bool d, bool shift, bool ctrl, bool interact, float MouseX, float MouseY)
-        {
-            this.w = w;
-            this.a = a;
-            this.s = s;
-            this.d = d;
-            this.shift = shift;
-            this.ctrl = ctrl;
-            this.interact = interact;
-            this.MouseX = MouseX;
-            this.MouseY = MouseY;
-        }
-    }
-
-
-    public Transform player;
     public Transform initPos;
-    public bool record;
     public bool startReplay;
 
     public float movementSprint = 5.0f;
     public float movementWalk = 2.0f;
     public float mouseSens = 5.0f;
 
-    private bool recording;
+    public bool isWalking;
+    public bool isRunning;
+    public bool isLeftTurn;
+    public bool isRightTurn;
+
+    public Animator animator;
+
     private float rotLeftRight;
     private float rotUpDown;
     private float xRotation = 0f;
 
-    private List<Clone> clones;
-    private int nbClones = 0;
     private int i;
     private int j;
     private float multiplier = 0.0f;
@@ -69,9 +32,10 @@ public class Clone : MonoBehaviour
 
     void Start()
     {
-        initPos = transform;
+        transform.position = initPos.position;
+        transform.rotation = initPos.rotation;
 
-        clones = new List<Clone>();
+        animator = GetComponent<Animator>();
 
         //Screen.lockCursor = true;
 
@@ -83,111 +47,49 @@ public class Clone : MonoBehaviour
         Vector3 movement = Vector3.zero;
 
 
-        /********** Live **********/
-
-        if (!startReplay)
-        {
-            if (Input.GetKey(KeyCode.S))
-            {
-                movement += Vector3.back;
-            }
-
-            if (Input.GetKey(KeyCode.W))
-            {
-                movement += Vector3.forward;
-            }
-
-            if (Input.GetKey(KeyCode.D))
-            {
-                movement += Vector3.right;
-            }
-
-            if (Input.GetKey(KeyCode.A))
-            {
-                movement += Vector3.left;
-            }
-
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                multiplier = movementSprint;
-            }
-            else
-            {
-                multiplier = movementWalk;
-            }
-
-            rotLeftRight = Input.GetAxis("Mouse X") * mouseSens;
-            rotUpDown = Input.GetAxis("Mouse Y") * mouseSens;
-        }
-
-
-        /********** Record **********/
-
-        if (record)
-        {
-            if (!recording)
-            {
-                clones.Add(new Clone(initPos));
-                recording = true;
-            }
-
-            clones[0].inputs.Add(new Inputs(
-                Input.GetKey(KeyCode.W),
-                Input.GetKey(KeyCode.A),
-                Input.GetKey(KeyCode.S),
-                Input.GetKey(KeyCode.D),
-                Input.GetKey(KeyCode.LeftShift),
-                Input.GetKey(KeyCode.LeftControl),
-                Input.GetKey(KeyCode.Mouse0),
-                Input.GetAxis("Mouse X"),
-                Input.GetAxis("Mouse Y")));
-            i++;
-        }
-        else if (!record && recording)
-        {
-            recording = false;
-            startReplay = true;
-
-            j = 0;
-        }
-
         /********** Replay **********/
 
         if (startReplay)
         {
             if (j <= i - 1)
             {
-                if (clones[0].inputs[j].s)
+                if (inputs[j].s)
                 {
                     movement += Vector3.back;
                 }
 
-                if (clones[0].inputs[j].w)
+                if (inputs[j].w)
                 {
                     movement += Vector3.forward;
                 }
 
-                if (clones[0].inputs[j].d)
+                if (inputs[j].d)
                 {
                     movement += Vector3.right;
                 }
 
-                if (clones[0].inputs[j].a)
+                if (inputs[j].a)
                 {
                     movement += Vector3.left;
                 }
 
-                if (clones[0].inputs[j].shift)
+                if (inputs[j].shift)
                 {
                     multiplier = movementSprint;
+                    isRunning = true;
                 }
                 else
                 {
                     multiplier = movementWalk;
+                    isRunning = false;
                 }
+                if (movement != Vector3.zero)
+                    isWalking = true;
+                else
+                    isWalking = false;
 
-                rotLeftRight = clones[0].inputs[j].MouseX * mouseSens;
-                rotUpDown = clones[0].inputs[j].MouseY * mouseSens;
+                rotLeftRight = inputs[j].MouseX * mouseSens;
+                rotUpDown = inputs[j].MouseY * mouseSens;
 
                 j++;
             }
@@ -208,16 +110,35 @@ public class Clone : MonoBehaviour
         xRotation -= rotUpDown;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
         Camera.main.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-    }
 
 
-    void CreateClone(Transform pos)
-    {
-        clones.Add(new Clone(pos));
-        nbClones++;
-    }
-    void AddInput()
-    {
+        /********** Animator **********/
+
+        if (rotLeftRight > 0.2f)
+        {
+            animator.SetBool("isRightTurn", true);
+            animator.SetBool("isLeftTurn", false);
+            isRightTurn = true;
+            isLeftTurn = false;
+        }
+        else if (rotLeftRight < -0.2f)
+        {
+            animator.SetBool("isRightTurn", false);
+            animator.SetBool("isLeftTurn", true);
+            isLeftTurn = true;
+            isRightTurn = false;
+        }
+        else
+        {
+            animator.SetBool("isRightTurn", false);
+            animator.SetBool("isLeftTurn", false);
+            isLeftTurn = false;
+            isRightTurn = false;
+        }
+
+        animator.SetBool("isWalking", isWalking);
+        animator.SetBool("isRunning", isRunning);
+
 
     }
 
