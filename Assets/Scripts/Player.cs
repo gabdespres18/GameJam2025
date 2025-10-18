@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     struct inputs
     {
-        bool 
+       // bool 
     }
 
     List<Vector3> positions;
