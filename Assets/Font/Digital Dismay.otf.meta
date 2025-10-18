@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d88f8382972eff84289bd1cf259c9eab
+guid: f983f82bcb358f74ea90814ef2d02a5b
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - DS-Digital
+  - Digital Dismay
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

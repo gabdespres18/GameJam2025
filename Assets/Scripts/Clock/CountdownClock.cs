@@ -7,6 +7,7 @@ public class CountdownClock : MonoBehaviour
     [SerializeField] TextMeshProUGUI timertext;
     [SerializeField] float remainingTime;
     bool GameOver = false;
+    int heure = 4;
 
     // Update is called once per frame
     private void Start()
@@ -17,19 +18,19 @@ public class CountdownClock : MonoBehaviour
     void Update()
     {
 
-        if (remainingTime > 0)
+        if (remainingTime < 3600)
         {
-            remainingTime -= Time.deltaTime;
+            remainingTime += Time.deltaTime;
         }
-        else if (remainingTime < 0)
+        else if (remainingTime >= 3600 && heure == 4)
         {
-            remainingTime = 0;
+            heure++;
             GameOver = true;
             Debug.Log("Game over!");
         }
         int minutes = Mathf.FloorToInt(remainingTime / 60);
         int seconds = Mathf.FloorToInt(remainingTime % 60);
-        timertext.text=string.Format("{0:00}:{1:00}", minutes, seconds);
+        timertext.text=string.Format(heure + ":{0:00}:{1:00}", minutes, seconds);
 
     }
 }
