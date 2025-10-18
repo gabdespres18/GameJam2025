@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Player : MonoBehaviour
+public class Clone : MonoBehaviour
 {
     struct Clone
     {
@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
         /********** Live **********/
 
         if (!startReplay)
-        { 
+        {
             if (Input.GetKey(KeyCode.S))
             {
                 movement += Vector3.back;
@@ -125,7 +125,7 @@ public class Player : MonoBehaviour
 
         if (record)
         {
-            if(!recording)
+            if (!recording)
             {
                 clones.Add(new Clone(initPos));
                 recording = true;
@@ -143,7 +143,7 @@ public class Player : MonoBehaviour
                 Input.GetAxis("Mouse Y")));
             i++;
         }
-        else if(!record && recording)
+        else if (!record && recording)
         {
             recording = false;
             startReplay = true;
@@ -202,8 +202,8 @@ public class Player : MonoBehaviour
         transform.Translate(movement * multiplier * Time.deltaTime, Space.Self);
 
         // Change la rotation gauche droite du player
-        transform.Rotate(0,  rotLeftRight, 0);
-        
+        transform.Rotate(0, rotLeftRight, 0);
+
         // Change la rotation haut bas de la caméra
         xRotation -= rotUpDown;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
@@ -220,4 +220,5 @@ public class Player : MonoBehaviour
     {
 
     }
+
 }
