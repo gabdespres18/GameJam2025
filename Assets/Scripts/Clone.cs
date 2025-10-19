@@ -36,6 +36,10 @@ public class Clone : MonoBehaviour
 
     public bool playerCollision = false;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioSource step1;
+    [SerializeField] private AudioSource step2;
+
     void Start()
     {
         transform.position = initPos.position + new Vector3(0, 0.91f, 0); ;
