@@ -44,6 +44,7 @@ public class DoorTriggerActivator : MonoBehaviour
         {
             if (objectToActivateOnExit != null)
             {
+                objectToActivateOnExit.SetActive(true);
                 if (elevatorSound != null)
                     elevatorSound.Play();
             }
