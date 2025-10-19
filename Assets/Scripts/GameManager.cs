@@ -51,5 +51,10 @@ public class GameManager : MonoBehaviour
             player.Reset();
         }
 
+        if (player.numDoor >= spawns.Count - 1 )
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0); // scene 0 = main menu
+        }
+
     }
 }
