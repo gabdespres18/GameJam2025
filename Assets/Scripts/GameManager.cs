@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     public Player player;
     public List<Clone> clones;
     public List<Transform> spawns;
+    public List<CountdownClock> clocks;
 
     [Header("Door-related GameObjects")]
     [Tooltip("Assign a GameObject for each door in order.")]
@@ -26,9 +27,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         int numDoor = player.numDoor;
+        bool timeOver = false;
+        bool playerCol = false;
+
+        for (int i = 0; i < clones.Count && i < numDoor; i++)
+        {
+            if (clones[i].playerCollision)
+                playerCol = true;
+        }
+
+            if (clocks[0] != null)
+            timeOver = clocks[0].timeOver;
 
         // Handle clones when player finishes a door
         if (player.finishedRecording)
@@ -44,13 +56,19 @@ public class GameManager : MonoBehaviour
                 c.currentDoor = i;
                 c.waitTime = (numDoor - i + 1) * 3.0f;
 
-                clones[i].InitializeAccess(player.currentAccess); // Inherit access
-
+                c.InitializeAccess(player.currentAccess); // Inherit access
+                
                 c.transform.position = spawn.position + new Vector3(0, 0.91f, 0);
                 c.transform.rotation = spawn.rotation;
 
                 c.gameObject.SetActive(true);
                 c.Reset();
+            }
+
+            foreach (CountdownClock clk in clocks)
+            {
+                if (clk != null)
+                    clk.ResetTime(3540 - ((numDoor + 1) * 3.0f));
             }
 
             // Deactivate previous door object
@@ -73,13 +91,25 @@ public class GameManager : MonoBehaviour
         }
 
         // R-key reset
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) || timeOver || playerCol)
         {
             player.Reset();
-            foreach (Clone c in clones)
+            player.ResetCurrentRecord();
+            for (int i = 0; i < clones.Count && i < numDoor; i++)
             {
-                if (c.gameObject.activeSelf)
-                    c.Reset();
+                Clone c = clones[i];
+
+                c.gameObject.SetActive(true);
+                c.Reset();
+            }
+
+            foreach (CountdownClock clk in clocks)
+            {
+                if (clk != null)
+                {
+                    clk.ResetTime(3540-(numDoor * 3.0f));
+                    clk.timeOver = false;
+                }
             }
         }
 
@@ -88,5 +118,7 @@ public class GameManager : MonoBehaviour
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
+
+        
     }
 }
