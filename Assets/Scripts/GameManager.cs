@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour
                 c.currentDoor = i;
                 c.waitTime = (numDoor - i + 1) * 3.0f;
 
+                clones[i].InitializeAccess(player.currentAccess); // Inherit access
+
                 c.transform.position = spawn.position + new Vector3(0, 0.91f, 0);
                 c.transform.rotation = spawn.rotation;
 
