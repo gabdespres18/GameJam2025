@@ -3,7 +3,8 @@ using UnityEngine;
 public class DoorTrigger : MonoBehaviour
 {
     public CardAccess requiredAccess = CardAccess.A; // Set per door
-    public GameObject doorObject;
+    public GameObject doorObjectOpen;
+    public GameObject doorObjectClose;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -12,12 +13,14 @@ public class DoorTrigger : MonoBehaviour
 
         if (player != null && player.currentAccess == requiredAccess)
         {
-            doorObject.SetActive(false); // Open door
+            doorObjectOpen.SetActive(true); // Open door
+            doorObjectClose.SetActive(false); // Open door
         }
 
         if (clone != null && clone.currentAccess == requiredAccess)
         {
-            doorObject.SetActive(false); // Open door
+            doorObjectOpen.SetActive(true); // Open door
+            doorObjectClose.SetActive(false); // Open door
         }
     }
 
@@ -29,7 +32,8 @@ public class DoorTrigger : MonoBehaviour
 
         if (player != null || clone != null)
         {
-            doorObject.SetActive(true); // Close door
+            doorObjectOpen.SetActive(false); // Open door
+            doorObjectClose.SetActive(true); // Open door
         }
     }
 }
