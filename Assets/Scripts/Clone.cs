@@ -104,9 +104,9 @@ public class Clone : MonoBehaviour
                 transform.Rotate(0, rotLeftRight, 0);
 
                 // Change la rotation haut bas de la caméra
-                xRotation -= rotUpDown;
-                xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-                Camera.main.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+               // xRotation -= rotUpDown;
+              // xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+              //  Camera.main.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
                 j++;
             }

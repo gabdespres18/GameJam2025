@@ -1325,16 +1325,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 3652492947541405985}
-  initPos: {fileID: 3652492947541405985}
+  spawns: []
   record: 0
   startReplay: 0
-  movementSprint: 5
-  movementWalk: 2
+  movementSprint: 3
+  movementWalk: 1.5
   mouseSens: 10
-  isWalking: 0
-  isRunning: 0
-  isLeftTurn: 0
-  isRightTurn: 0
+  reset: 0
+  finishedRecording: 0
+  numDoor: 0
+  IsWalking: 0
+  IsRunning: 0
+  IsLeftTurn: 0
+  IsRightTurn: 0
   animator: {fileID: 5541789284217334074}
 --- !u!54 &4700288005922601454
 Rigidbody:
