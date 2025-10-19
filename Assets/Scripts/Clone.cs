@@ -34,7 +34,7 @@ public class Clone : MonoBehaviour
 
     public CardAccess currentAccess = CardAccess.A;
 
-    
+    public bool playerCollision = false;
 
     void Start()
     {
@@ -159,6 +159,9 @@ public class Clone : MonoBehaviour
 
         if (col.gameObject.name == "test")
             Debug.Log("Ya balls: " + currentDoor);
+
+        if (col.gameObject.name == "PlayerCollision")
+            playerCollision = true;
     }
 
     public void Reset()
@@ -167,6 +170,7 @@ public class Clone : MonoBehaviour
         transform.rotation = initPos.rotation;
 
         startReplay = false;
+        playerCollision = false;
         j = 0;
         StopCoroutine(WaitingForSpawn());
         StartCoroutine(WaitingForSpawn());

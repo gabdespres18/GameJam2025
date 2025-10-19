@@ -31,8 +31,15 @@ public class GameManager : MonoBehaviour
     {
         int numDoor = player.numDoor;
         bool timeOver = false;
+        bool playerCol = false;
 
-        if (clocks[0] != null)
+        for (int i = 0; i < clones.Count && i < numDoor; i++)
+        {
+            if (clones[i].playerCollision)
+                playerCol = true;
+        }
+
+            if (clocks[0] != null)
             timeOver = clocks[0].timeOver;
 
         // Handle clones when player finishes a door
@@ -49,7 +56,7 @@ public class GameManager : MonoBehaviour
                 c.currentDoor = i;
                 c.waitTime = (numDoor - i + 1) * 3.0f;
 
-                //c.InitializeAccess(player.currentAccess); // Inherit access
+                c.InitializeAccess(player.currentAccess); // Inherit access
                 
                 c.transform.position = spawn.position + new Vector3(0, 0.91f, 0);
                 c.transform.rotation = spawn.rotation;
@@ -84,13 +91,16 @@ public class GameManager : MonoBehaviour
         }
 
         // R-key reset
-        if (Input.GetKeyDown(KeyCode.R) || timeOver)
+        if (Input.GetKeyDown(KeyCode.R) || timeOver || playerCol)
         {
             player.Reset();
-            foreach (Clone c in clones)
+            player.ResetCurrentRecord();
+            for (int i = 0; i < clones.Count && i < numDoor; i++)
             {
-                if (c.gameObject.activeSelf)
-                    c.Reset();
+                Clone c = clones[i];
+
+                c.gameObject.SetActive(true);
+                c.Reset();
             }
 
             foreach (CountdownClock clk in clocks)
