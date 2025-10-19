@@ -1256,6 +1256,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3652492947541405985}
   - component: {fileID: 6257752677671087162}
+  - component: {fileID: 2040058916566010364}
   - component: {fileID: 1234552973619611905}
   - component: {fileID: 1734813149640715633}
   - component: {fileID: 4700288005922601454}
@@ -1291,6 +1292,29 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4733180984463638847}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!136 &2040058916566010364
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4733180984463638847}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.410932
+  m_Height: 2.0335183
+  m_Direction: 1
+  m_Center: {x: 0.025448024, y: 1.0002713, z: 0.06362003}
 --- !u!65 &1234552973619611905
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1339,6 +1363,11 @@ MonoBehaviour:
   IsLeftTurn: 0
   IsRightTurn: 0
   animator: {fileID: 5541789284217334074}
+  isRealPlayer: 1
+  currentAccess: 0
+  cardA_UI: {fileID: 0}
+  cardB_UI: {fileID: 0}
+  cardC_UI: {fileID: 0}
 --- !u!54 &4700288005922601454
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1361,7 +1390,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0

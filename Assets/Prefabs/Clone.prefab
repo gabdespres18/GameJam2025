@@ -1541,7 +1541,7 @@ GameObject:
   - component: {fileID: 4345776863981347585}
   - component: {fileID: 1756482584435216316}
   - component: {fileID: 1562406421441050408}
-  - component: {fileID: 4939236773860689953}
+  - component: {fileID: 7085838261301805559}
   m_Layer: 0
   m_Name: Clone
   m_TagString: Player
@@ -1619,7 +1619,7 @@ MonoBehaviour:
   IsRightTurn: 0
   animator: {fileID: 6980737345215614018}
   currentAccess: 0
---- !u!54 &4939236773860689953
+--- !u!54 &7085838261301805559
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
