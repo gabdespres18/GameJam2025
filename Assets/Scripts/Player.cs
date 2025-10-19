@@ -100,50 +100,51 @@ public class Player : MonoBehaviour
     {
         Vector3 movement = Vector3.zero;
 
-
-        /********** Live **********/
-
-        if (Input.GetKey(KeyCode.S))
+        if (!SceneLoader.IsPaused)
         {
-            movement += Vector3.back;
+            /********** Live **********/
+
+            if (Input.GetKey(KeyCode.S))
+            {
+                movement += Vector3.back;
+            }
+
+            if (Input.GetKey(KeyCode.W))
+            {
+                movement += Vector3.forward;
+            }
+
+            if (Input.GetKey(KeyCode.D))
+            {
+                movement += Vector3.right;
+            }
+
+            if (Input.GetKey(KeyCode.A))
+            {
+                movement += Vector3.left;
+            }
+
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                multiplier = movementSprint;
+                IsRunning = true;
+            }
+            else
+            {
+                multiplier = movementWalk;
+                IsRunning = false;
+            }
+            if (movement != Vector3.zero)
+                IsWalking = true;
+            else
+                IsWalking = false;
+
+            mouseX = Input.GetAxis("Mouse X");
+            mouseY = Input.GetAxis("Mouse Y");
+
+            rotLeftRight = mouseX * mouseSens;
+            rotUpDown = mouseY * mouseSens;
         }
-
-        if (Input.GetKey(KeyCode.W))
-        {
-            movement += Vector3.forward;
-        }
-
-        if (Input.GetKey(KeyCode.D))
-        {
-            movement += Vector3.right;
-        }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            movement += Vector3.left;
-        }
-
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            multiplier = movementSprint;
-            IsRunning = true;
-        }
-        else
-        {
-            multiplier = movementWalk;
-            IsRunning = false;
-        }
-        if (movement != Vector3.zero)
-            IsWalking = true;
-        else
-            IsWalking = false;
-
-        mouseX = Input.GetAxis("Mouse X");
-        mouseY = Input.GetAxis("Mouse Y");
-
-        rotLeftRight = mouseX * mouseSens;
-        rotUpDown = mouseY * mouseSens;
-
 
         /********** Record **********/
 
