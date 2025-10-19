@@ -85,7 +85,14 @@ public class Player : MonoBehaviour
     private int j;
     private float multiplier = 0.0f;
 
+    public bool isRealPlayer = true;
+
     public CardAccess currentAccess = CardAccess.A; // Start with A
+
+    [Header("Card UI Objects")]
+    public GameObject cardA_UI;
+    public GameObject cardB_UI;
+    public GameObject cardC_UI;
 
 
 
@@ -104,6 +111,14 @@ public class Player : MonoBehaviour
         //Screen.lockCursor = true;
 
         i = 0;
+    }
+
+    public void UpdateCardUI()
+    {
+        if (!isRealPlayer) return; // Only the real player updates UI
+        cardA_UI.SetActive(currentAccess == CardAccess.A);
+        cardB_UI.SetActive(currentAccess == CardAccess.B);
+        cardC_UI.SetActive(currentAccess == CardAccess.C);
     }
 
     void FixedUpdate()

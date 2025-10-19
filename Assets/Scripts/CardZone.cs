@@ -9,8 +9,16 @@ public class CardZone : MonoBehaviour
         Player player = other.GetComponent<Player>();
         if (player != null)
         {
+            // Both real player and clones update their access
             player.currentAccess = accessType;
-            Debug.Log("Player got access: " + accessType);
+
+            // Only the real player updates the UI
+            if (player.isRealPlayer)
+            {
+                player.UpdateCardUI();
+            }
+
+            Debug.Log(other.name + " got access: " + accessType);
         }
     }
 }
