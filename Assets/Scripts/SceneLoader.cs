@@ -9,24 +9,26 @@ public class SceneLoader : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if(pauseMenu != null)
+            ResumeGame();
         pauseMenu.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            if(IsPaused)
+        if (pauseMenu != null)
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                ResumeGame();
+                if(IsPaused)
+                {
+                    ResumeGame();
+                }
+                else
+                {
+                    PauseGame();
+                }
             }
-            else
-            {
-                PauseGame();
-            }
-        }
     }
 
     [Tooltip("The build index of the scene to load.")]
@@ -35,6 +37,7 @@ public class SceneLoader : MonoBehaviour
     public void LoadScene()
     {
         SceneManager.LoadScene(sceneIndex);
+        ResumeGame();
     }
 
     public void QuitGame()
@@ -69,5 +72,6 @@ public class SceneLoader : MonoBehaviour
 
         // Reload it by name
         SceneManager.LoadScene(currentScene.name);
+        ResumeGame();
     }
 }
