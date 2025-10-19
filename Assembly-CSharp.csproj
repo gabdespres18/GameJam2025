@@ -63,10 +63,12 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\DoorTriggerActivator.cs" />
     <Compile Include="Assets\Scripts\SoundsSO.cs" />
+    <Compile Include="Assets\Scripts\CardZone.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\PointOfInterest.cs" />
     <Compile Include="Assets\Scripts\Clock\CountdownClock.cs" />
     <Compile Include="Assets\Scripts\PlaySoundExit.cs" />
+    <Compile Include="Assets\Scripts\DoorTrigger.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\Clone.cs" />
     <Compile Include="Assets\Scripts\SoundManager.cs" />

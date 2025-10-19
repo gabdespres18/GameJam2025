@@ -42,6 +42,13 @@ public struct Clones
     }
 }
 
+public enum CardAccess
+{
+    A,
+    B,
+    C
+}
+
 public class Player : MonoBehaviour
 {
     public Transform player;
@@ -78,6 +85,16 @@ public class Player : MonoBehaviour
     private int j;
     private float multiplier = 0.0f;
 
+    public bool isRealPlayer = true;
+
+    public CardAccess currentAccess = CardAccess.A; // Start with A
+
+    [Header("Card UI Objects")]
+    public GameObject cardA_UI;
+    public GameObject cardB_UI;
+    public GameObject cardC_UI;
+
+
 
     void Start()
     {
@@ -94,6 +111,14 @@ public class Player : MonoBehaviour
         //Screen.lockCursor = true;
 
         i = 0;
+    }
+
+    public void UpdateCardUI()
+    {
+        if (!isRealPlayer) return; // Only the real player updates UI
+        cardA_UI.SetActive(currentAccess == CardAccess.A);
+        cardB_UI.SetActive(currentAccess == CardAccess.B);
+        cardC_UI.SetActive(currentAccess == CardAccess.C);
     }
 
     void FixedUpdate()
@@ -215,7 +240,16 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.name == "Spawn"+(numDoor+1))
+        // Example: Trigger zones that change card access
+        CardZone zone = col.GetComponent<CardZone>();
+        if (zone != null)
+        {
+            currentAccess = zone.accessType;
+            Debug.Log("Player got access: " + currentAccess);
+        }
+
+        // Keep your existing door logic
+        if (col.gameObject.name == "Spawn" + (numDoor + 1))
         {
             record = false;
             recording = false;

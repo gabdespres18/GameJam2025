@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+
 public class Clone : MonoBehaviour
 {
     public List<Inputs> inputs;
@@ -31,7 +32,9 @@ public class Clone : MonoBehaviour
     private int j;
     private float multiplier = 0.0f;
 
+    public CardAccess currentAccess = CardAccess.A;
 
+    
 
     void Start()
     {
@@ -160,11 +163,10 @@ public class Clone : MonoBehaviour
 
     public void Reset()
     {
-        transform.position = initPos.position + new Vector3(0, 0.91f, 0); ;
+        transform.position = initPos.position + new Vector3(0, 0.91f, 0);
         transform.rotation = initPos.rotation;
 
         startReplay = false;
-
         j = 0;
         StopCoroutine(WaitingForSpawn());
         StartCoroutine(WaitingForSpawn());
@@ -174,6 +176,11 @@ public class Clone : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         startReplay = true;
+    }
+
+    public void InitializeAccess(CardAccess access)
+    {
+        currentAccess = access;
     }
 
 }
