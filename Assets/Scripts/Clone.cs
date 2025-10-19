@@ -4,19 +4,22 @@ using System.Collections.Generic;
 
 public class Clone : MonoBehaviour
 {
-    private List<Inputs> inputs;
+    public List<Inputs> inputs;
 
     public Transform initPos;
     public bool startReplay;
 
     public float movementSprint = 5.0f;
     public float movementWalk = 2.0f;
-    public float mouseSens = 5.0f;
+    public float mouseSens = 10.0f;
 
-    public bool isWalking;
-    public bool isRunning;
-    public bool isLeftTurn;
-    public bool isRightTurn;
+    public int currentDoor;
+    public float waitTime = 0;
+
+    public bool IsWalking;
+    public bool IsRunning;
+    public bool IsLeftTurn;
+    public bool IsRightTurn;
 
     public Animator animator;
 
@@ -32,14 +35,15 @@ public class Clone : MonoBehaviour
 
     void Start()
     {
-        transform.position = initPos.position;
+        transform.position = initPos.position + new Vector3(0, 0.91f, 0); ;
         transform.rotation = initPos.rotation;
 
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
 
         //Screen.lockCursor = true;
 
         i = 0;
+        j = 0;
     }
 
     void FixedUpdate()
@@ -51,7 +55,7 @@ public class Clone : MonoBehaviour
 
         if (startReplay)
         {
-            if (j <= i - 1)
+            if (j <= inputs.Count - 1)
             {
                 if (inputs[j].s)
                 {
@@ -76,70 +80,100 @@ public class Clone : MonoBehaviour
                 if (inputs[j].shift)
                 {
                     multiplier = movementSprint;
-                    isRunning = true;
+                    IsRunning = true;
                 }
                 else
                 {
                     multiplier = movementWalk;
-                    isRunning = false;
+                    IsRunning = false;
                 }
                 if (movement != Vector3.zero)
-                    isWalking = true;
+                    IsWalking = true;
                 else
-                    isWalking = false;
+                    IsWalking = false;
 
-                rotLeftRight = inputs[j].MouseX * mouseSens;
-                rotUpDown = inputs[j].MouseY * mouseSens;
+                rotLeftRight = inputs[j].MouseX * mouseSens*2;
+                rotUpDown = inputs[j].MouseY * mouseSens*2;
+
+                /********** Movement **********/
+
+                // Change la position
+                transform.Translate(movement * multiplier * Time.deltaTime, Space.Self);
+
+                // Change la rotation gauche droite du player
+                transform.Rotate(0, rotLeftRight, 0);
+
+                // Change la rotation haut bas de la caméra
+                xRotation -= rotUpDown;
+                xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+                Camera.main.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
                 j++;
             }
             else
+            {
                 startReplay = false;
+                gameObject.SetActive(false);
+            }
         }
-
-
-        /********** Movement **********/
-
-        // Change la position
-        transform.Translate(movement * multiplier * Time.deltaTime, Space.Self);
-
-        // Change la rotation gauche droite du player
-        transform.Rotate(0, rotLeftRight, 0);
-
-        // Change la rotation haut bas de la caméra
-        xRotation -= rotUpDown;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-        Camera.main.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-
 
         /********** Animator **********/
 
         if (rotLeftRight > 0.2f)
         {
-            animator.SetBool("isRightTurn", true);
-            animator.SetBool("isLeftTurn", false);
-            isRightTurn = true;
-            isLeftTurn = false;
+            animator.SetBool("IsRightTurn", true);
+            animator.SetBool("IsLeftTurn", false);
+            IsRightTurn = true;
+            IsLeftTurn = false;
         }
         else if (rotLeftRight < -0.2f)
         {
-            animator.SetBool("isRightTurn", false);
-            animator.SetBool("isLeftTurn", true);
-            isLeftTurn = true;
-            isRightTurn = false;
+            animator.SetBool("IsRightTurn", false);
+            animator.SetBool("IsLeftTurn", true);
+            IsLeftTurn = true;
+            IsRightTurn = false;
         }
         else
         {
-            animator.SetBool("isRightTurn", false);
-            animator.SetBool("isLeftTurn", false);
-            isLeftTurn = false;
-            isRightTurn = false;
+            animator.SetBool("IsRightTurn", false);
+            animator.SetBool("IsLeftTurn", false);
+            IsLeftTurn = false;
+            IsRightTurn = false;
         }
 
-        animator.SetBool("isWalking", isWalking);
-        animator.SetBool("isRunning", isRunning);
+        animator.SetBool("IsWalking", IsWalking);
+        animator.SetBool("IsRunning", IsRunning);
 
 
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.name == "Spawn" + currentDoor)
+        {
+
+        }
+
+        if (col.gameObject.name == "test")
+            Debug.Log("Ya balls: " + currentDoor);
+    }
+
+    public void Reset()
+    {
+        transform.position = initPos.position + new Vector3(0, 0.91f, 0); ;
+        transform.rotation = initPos.rotation;
+
+        startReplay = false;
+
+        j = 0;
+        StopCoroutine(WaitingForSpawn());
+        StartCoroutine(WaitingForSpawn());
+    }
+
+    private IEnumerator WaitingForSpawn()
+    {
+        yield return new WaitForSeconds(waitTime);
+        startReplay = true;
     }
 
 }
