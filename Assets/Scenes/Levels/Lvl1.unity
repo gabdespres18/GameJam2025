@@ -352,7 +352,7 @@ PrefabInstance:
     - target: {fileID: 1562406421441050408, guid: 26a185aea6dac104d941eebc3900ad0a, type: 3}
       propertyPath: initPos
       value: 
-      objectReference: {fileID: 1843693002}
+      objectReference: {fileID: 280297219}
     - target: {fileID: 5923869752054483016, guid: 26a185aea6dac104d941eebc3900ad0a, type: 3}
       propertyPath: m_Name
       value: Clone1
@@ -1081,7 +1081,7 @@ PrefabInstance:
     - target: {fileID: 1562406421441050408, guid: 26a185aea6dac104d941eebc3900ad0a, type: 3}
       propertyPath: initPos
       value: 
-      objectReference: {fileID: 741986391}
+      objectReference: {fileID: 674644264}
     - target: {fileID: 5923869752054483016, guid: 26a185aea6dac104d941eebc3900ad0a, type: 3}
       propertyPath: m_Name
       value: Clone3
@@ -1333,7 +1333,7 @@ PrefabInstance:
     - target: {fileID: 1562406421441050408, guid: 26a185aea6dac104d941eebc3900ad0a, type: 3}
       propertyPath: initPos
       value: 
-      objectReference: {fileID: 674644264}
+      objectReference: {fileID: 1843693002}
     - target: {fileID: 5923869752054483016, guid: 26a185aea6dac104d941eebc3900ad0a, type: 3}
       propertyPath: m_Name
       value: Clone2
@@ -1565,7 +1565,7 @@ PrefabInstance:
     - target: {fileID: 1562406421441050408, guid: 26a185aea6dac104d941eebc3900ad0a, type: 3}
       propertyPath: initPos
       value: 
-      objectReference: {fileID: 1018700478}
+      objectReference: {fileID: 741986391}
     - target: {fileID: 5923869752054483016, guid: 26a185aea6dac104d941eebc3900ad0a, type: 3}
       propertyPath: m_Name
       value: Clone4

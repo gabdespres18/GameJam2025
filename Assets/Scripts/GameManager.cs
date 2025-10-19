@@ -37,13 +37,18 @@ public class GameManager : MonoBehaviour
 
         if (player.finishedRecording)
         {
-            clones[numDoor].transform.position = spawns[numDoor].transform.position + new Vector3(0, 0.91f, 0);
-            clones[numDoor].transform.rotation = spawns[numDoor].transform.rotation;
-            clones[numDoor].inputs = player.clones[numDoor].inputs;
-            clones[numDoor].gameObject.SetActive(true);
-            clones[numDoor].startReplay = true;
-            player.finishedRecording = false;
+            for (int i = 0; i <= numDoor; i++)
+            {
+                clones[i].gameObject.SetActive(true);
+                clones[i].waitTime = (numDoor - i + 1) * 3.0f;
+                clones[i].Reset();
+                clones[i].transform.position = spawns[i].transform.position + new Vector3(0, 0.91f, 0);
+                clones[i].transform.rotation = spawns[i].transform.rotation;
+                clones[i].inputs = player.clones[i].inputs;
+                clones[i].currentDoor = i;
+            }
             player.numDoor++;
+            player.Reset();
         }
 
     }

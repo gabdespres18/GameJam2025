@@ -155,7 +155,7 @@ public class Player : MonoBehaviour
                 recording = true;
             }
 
-            clones[0].inputs.Add(new Inputs(
+            clones[numDoor].inputs.Add(new Inputs(
                 Input.GetKey(KeyCode.W),
                 Input.GetKey(KeyCode.A),
                 Input.GetKey(KeyCode.S),
@@ -165,64 +165,8 @@ public class Player : MonoBehaviour
                 Input.GetKey(KeyCode.Mouse0),
                 mouseX,
                 mouseY));
-            if(i == 456)
-            {
-                Debug.Log(Input.GetAxis("Mouse X"));
-                Debug.Log(clones[0].inputs[i].MouseX);
-
-            }
             i++;
         }
-
-        /********** Replay **********/
-
-        /*if (startReplay)
-        {
-            if (j <= i - 1)
-            {
-                if (clones[0].inputs[j].s)
-                {
-                    movement += Vector3.back;
-                }
-
-                if (clones[0].inputs[j].w)
-                {
-                    movement += Vector3.forward;
-                }
-
-                if (clones[0].inputs[j].d)
-                {
-                    movement += Vector3.right;
-                }
-
-                if (clones[0].inputs[j].a)
-                {
-                    movement += Vector3.left;
-                }
-
-                if (clones[0].inputs[j].shift)
-                {
-                    multiplier = movementSprint;
-                    IsRunning = true;
-                }
-                else
-                {
-                    multiplier = movementWalk;
-                    IsRunning = false;
-                }
-                if (movement != Vector3.zero)
-                    IsWalking = true;
-                else
-                    IsWalking = false;
-
-                rotLeftRight = clones[0].inputs[j].MouseX * mouseSens;
-                rotUpDown = clones[0].inputs[j].MouseY * mouseSens;
-
-                j++;
-            }
-            else
-                startReplay = false;
-        }*/
 
 
         /********** Movement **********/
@@ -272,10 +216,19 @@ public class Player : MonoBehaviour
     {
         if (col.gameObject.name == "Spawn"+(numDoor+1))
         {
-            Debug.Log(i);
             record = false;
             recording = false;
             finishedRecording = true;
         }
+    }
+
+    public void Reset()
+    {
+        transform.position = spawns[numDoor].position + new Vector3(0, 0.91f, 0);
+        transform.rotation = spawns[numDoor].rotation;
+
+        record = true;
+        finishedRecording = false;
+        i = 0;
     }
 }

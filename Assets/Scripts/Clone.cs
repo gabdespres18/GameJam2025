@@ -13,6 +13,9 @@ public class Clone : MonoBehaviour
     public float movementWalk = 2.0f;
     public float mouseSens = 10.0f;
 
+    public int currentDoor;
+    public float waitTime = 0;
+
     public bool IsWalking;
     public bool IsRunning;
     public bool IsLeftTurn;
@@ -52,7 +55,6 @@ public class Clone : MonoBehaviour
 
         if (startReplay)
         {
-            //Debug.Log(j);
             if (j <= inputs.Count - 1)
             {
                 if (inputs[j].s)
@@ -111,18 +113,8 @@ public class Clone : MonoBehaviour
             else
             {
                 startReplay = false;
-                Debug.Log(j);
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
-            if (j == 456)
-            {
-                Debug.Log(inputs[j].MouseX);
-
-            }
-
-
-        
-
         }
 
         /********** Animator **********/
@@ -153,6 +145,32 @@ public class Clone : MonoBehaviour
         animator.SetBool("IsRunning", IsRunning);
 
 
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.name == "Spawn" + currentDoor)
+        {
+
+        }
+    }
+
+    public void Reset()
+    {
+        transform.position = initPos.position + new Vector3(0, 0.91f, 0); ;
+        transform.rotation = initPos.rotation;
+
+        startReplay = false;
+
+        j = 0;
+        StopCoroutine(WaitingForSpawn());
+        StartCoroutine(WaitingForSpawn());
+    }
+
+    private IEnumerator WaitingForSpawn()
+    {
+        yield return new WaitForSeconds(waitTime);
+        startReplay = true;
     }
 
 }
