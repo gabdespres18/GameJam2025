@@ -6,31 +6,38 @@ public class CountdownClock : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI timertext;
     [SerializeField] float remainingTime;
-    bool GameOver = false;
+    public bool timeOver = false;
     int heure = 4;
+    private float time;
 
     // Update is called once per frame
     private void Start()
     {
         timertext.color = Color.red;
+        ResetTime(remainingTime);
     }
 
-    void Update()
+    void FixedUpdate()
     {
 
-        if (remainingTime < 3600)
+        if (time < 3600)
         {
-            remainingTime += Time.deltaTime;
+            time += Time.deltaTime;
         }
-        else if (remainingTime >= 3600 && heure == 4)
+        else if (time >= 3600 && heure == 4)
         {
             heure++;
-            GameOver = true;
+            timeOver = true;
             Debug.Log("Game over!");
         }
-        int minutes = Mathf.FloorToInt(remainingTime / 60);
-        int seconds = Mathf.FloorToInt(remainingTime % 60);
+        int minutes = Mathf.FloorToInt(time / 60);
+        int seconds = Mathf.FloorToInt(time % 60);
         timertext.text = string.Format(heure + ":{0:00}:{1:00}", minutes, seconds);
 
+    }
+
+    public void ResetTime(float t)
+    {
+        time = t;
     }
 }

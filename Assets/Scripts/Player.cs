@@ -99,8 +99,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         //initPos = transform;
-        transform.position = spawns[numDoor].position  + new Vector3(0, 0.91f, 0);
-        transform.rotation = spawns[numDoor].rotation;
+        transform.parent.position = spawns[numDoor].position  + new Vector3(0, 0.91f, 0);
+        transform.parent.rotation = spawns[numDoor].rotation;
 
         clones = new List<Clones>();
 
@@ -198,10 +198,10 @@ public class Player : MonoBehaviour
         /********** Movement **********/
 
         // Change la position
-        transform.Translate(movement * multiplier * Time.deltaTime, Space.Self);
+        transform.parent.Translate(movement * multiplier * Time.deltaTime, Space.Self);
 
         // Change la rotation gauche droite du player
-        transform.Rotate(0, rotLeftRight, 0);
+        transform.parent.Rotate(0, rotLeftRight, 0);
         
         // Change la rotation haut bas de la caméra
         xRotation -= rotUpDown;
@@ -255,17 +255,20 @@ public class Player : MonoBehaviour
             recording = false;
             finishedRecording = true;
         }
-        if (col.gameObject.name == "test")
-            Debug.Log("Ya balls itchy");
     }
 
     public void Reset()
     {
-        transform.position = spawns[numDoor].position + new Vector3(0, 0.91f, 0);
-        transform.rotation = spawns[numDoor].rotation;
+        transform.parent.position = spawns[numDoor].position + new Vector3(0, 0.91f, 0);
+        transform.parent.rotation = spawns[numDoor].rotation;
 
         record = true;
         finishedRecording = false;
         i = 0;
+    }
+
+    public void ResetCurrentRecord()
+    {
+        clones[numDoor].inputs.Clear();
     }
 }
