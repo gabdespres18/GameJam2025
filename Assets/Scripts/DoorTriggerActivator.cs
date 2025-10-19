@@ -3,11 +3,13 @@ using UnityEngine;
 public class DoorTriggerActivator : MonoBehaviour
 {
     [Header("Assign GameObjects to toggle")]
-    public GameObject objectToActivateOnEnter;
+    public GameObject objectToActivateOnEnter1;
+    public GameObject objectToActivateOnEnterL;
     public GameObject objectToDeactivateOnEnter;
 
     public GameObject objectToActivateOnExit;
     public GameObject objectToDeactivateOnExit;
+    public GameObject objectToDeactivateOnExitL;
 
     [Tooltip("The tag of the object that will trigger this behavior.")]
     public string triggerTag = "Player";
@@ -16,8 +18,10 @@ public class DoorTriggerActivator : MonoBehaviour
     {
         if (other.CompareTag(triggerTag))
         {
-            if (objectToActivateOnEnter != null)
-                objectToActivateOnEnter.SetActive(true);
+            if (objectToActivateOnEnter1 != null)
+                objectToActivateOnEnter1.SetActive(true);
+            if (objectToActivateOnEnterL != null)
+                objectToActivateOnEnterL.SetActive(true);
             if (objectToDeactivateOnEnter != null)
                 objectToDeactivateOnEnter.SetActive(false);
         }
@@ -31,6 +35,8 @@ public class DoorTriggerActivator : MonoBehaviour
                 objectToActivateOnExit.SetActive(true);
             if (objectToDeactivateOnExit != null)
                 objectToDeactivateOnExit.SetActive(false);
+            if (objectToDeactivateOnExitL != null)
+                objectToDeactivateOnExitL.SetActive(false);
         }
     }
 }
