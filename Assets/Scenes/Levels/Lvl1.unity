@@ -1429,6 +1429,8 @@ MonoBehaviour:
   - {fileID: 280297219}
   - {fileID: 1843693002}
   - {fileID: 674644264}
+  clocks:
+  - {fileID: 1819773662}
   doorObjects:
   - {fileID: 2112856144}
   - {fileID: 648856841}
@@ -1881,7 +1883,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1004092333915363076, guid: 85fc469ed4183ac40b8e8b5ba09c174f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.043
       objectReference: {fileID: 0}
     - target: {fileID: 1004092333915363076, guid: 85fc469ed4183ac40b8e8b5ba09c174f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1905,7 +1907,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1004092333915363076, guid: 85fc469ed4183ac40b8e8b5ba09c174f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.503
+      value: 0.343
       objectReference: {fileID: 0}
     - target: {fileID: 1004092333915363076, guid: 85fc469ed4183ac40b8e8b5ba09c174f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1925,16 +1927,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4716601654636535018, guid: 85fc469ed4183ac40b8e8b5ba09c174f, type: 3}
       propertyPath: m_fontSize
-      value: 0.55
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4716601654636535018, guid: 85fc469ed4183ac40b8e8b5ba09c174f, type: 3}
       propertyPath: m_margin.x
-      value: -0.015733957
+      value: 0.00094783306
       objectReference: {fileID: 0}
     - target: {fileID: 4716601654636535018, guid: 85fc469ed4183ac40b8e8b5ba09c174f, type: 3}
       propertyPath: m_margin.y
       value: -0.21509635
       objectReference: {fileID: 0}
+    - target: {fileID: 4716601654636535018, guid: 85fc469ed4183ac40b8e8b5ba09c174f, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 7e0bd02d8f197514b85316ec4c4021ee, type: 2}
     - target: {fileID: 4716601654636535018, guid: 85fc469ed4183ac40b8e8b5ba09c174f, type: 3}
       propertyPath: m_fontSizeMin
       value: 0
@@ -1943,6 +1949,10 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4716601654636535018, guid: 85fc469ed4183ac40b8e8b5ba09c174f, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -5202906651509231509, guid: 7e0bd02d8f197514b85316ec4c4021ee, type: 2}
     - target: {fileID: 4716601654636535018, guid: 85fc469ed4183ac40b8e8b5ba09c174f, type: 3}
       propertyPath: m_enableAutoSizing
       value: 1
@@ -1955,9 +1965,21 @@ PrefabInstance:
       propertyPath: m_HorizontalAlignment
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4716601654636535018, guid: 85fc469ed4183ac40b8e8b5ba09c174f, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6915725281508210357, guid: 85fc469ed4183ac40b8e8b5ba09c174f, type: 3}
       propertyPath: m_Name
       value: Timer
+      objectReference: {fileID: 0}
+    - target: {fileID: 7238220535096997030, guid: 85fc469ed4183ac40b8e8b5ba09c174f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7238220535096997030, guid: 85fc469ed4183ac40b8e8b5ba09c174f, type: 3}
+      propertyPath: remainingTime
+      value: 3545
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5066,7 +5088,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timertext: {fileID: 403950071}
-  remainingTime: 15
+  remainingTime: 3545
 --- !u!4 &1819773665 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3027261910014125512, guid: 489697d8ae1dfa645ad701cc6bfeefc2, type: 3}
