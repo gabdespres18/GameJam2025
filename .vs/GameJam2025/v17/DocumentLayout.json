@@ -48,7 +48,7 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\DoorTriggerActivator.cs",
               "ToolTip": "D:\\GitHubRepo\\GameJamQC\\GameJam2025\\Assets\\Scripts\\DoorTriggerActivator.cs",
               "RelativeToolTip": "Assets\\Scripts\\DoorTriggerActivator.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-19T14:24:56.969Z",
               "EditorCaption": ""
@@ -63,8 +63,7 @@
               "RelativeToolTip": "Assets\\Scripts\\GameManager.cs",
               "ViewState": "AQIAADYAAAAAAAAAAAAAAEsAAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-19T12:59:30.764Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-19T12:59:30.764Z"
             },
             {
               "$type": "Document",
@@ -76,8 +75,7 @@
               "RelativeToolTip": "Assets\\Scripts\\Clone.cs",
               "ViewState": "AQIAAJEAAAAAAAAAAAAIwKgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-19T12:42:40.898Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-19T12:42:40.898Z"
             },
             {
               "$type": "Document",
@@ -89,8 +87,7 @@
               "RelativeToolTip": "Assets\\Scripts\\Player.cs",
               "ViewState": "AQIAAH4AAAAAAAAAAAAAAI8AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-19T12:22:44.12Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-19T12:22:44.12Z"
             },
             {
               "$type": "Document",
@@ -102,8 +99,7 @@
               "RelativeToolTip": "Assets\\Scripts\\SceneLoader.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-19T12:16:39.764Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-19T12:16:39.764Z"
             },
             {
               "$type": "Document",
