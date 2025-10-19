@@ -42,6 +42,13 @@ public struct Clones
     }
 }
 
+public enum CardAccess
+{
+    A,
+    B,
+    C
+}
+
 public class Player : MonoBehaviour
 {
     public Transform player;
@@ -77,6 +84,9 @@ public class Player : MonoBehaviour
     private int i;
     private int j;
     private float multiplier = 0.0f;
+
+    public CardAccess currentAccess = CardAccess.A; // Start with A
+
 
 
     void Start()
@@ -215,7 +225,16 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.name == "Spawn"+(numDoor+1))
+        // Example: Trigger zones that change card access
+        CardZone zone = col.GetComponent<CardZone>();
+        if (zone != null)
+        {
+            currentAccess = zone.accessType;
+            Debug.Log("Player got access: " + currentAccess);
+        }
+
+        // Keep your existing door logic
+        if (col.gameObject.name == "Spawn" + (numDoor + 1))
         {
             record = false;
             recording = false;
