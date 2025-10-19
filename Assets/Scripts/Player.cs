@@ -220,6 +220,8 @@ public class Player : MonoBehaviour
             recording = false;
             finishedRecording = true;
         }
+        if (col.gameObject.name == "test")
+            Debug.Log("Ya balls itchy");
     }
 
     public void Reset()

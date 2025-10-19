@@ -153,6 +153,9 @@ public class Clone : MonoBehaviour
         {
 
         }
+
+        if (col.gameObject.name == "test")
+            Debug.Log("Ya balls: " + currentDoor);
     }
 
     public void Reset()
