@@ -8,6 +8,27 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu/MainMenu.unity
     guid: 9b75ea808cd56304692e747972ee9644
+  - enabled: 1
+    path: Assets/Scenes/Niveaux/Niveau_1_v02.unity
+    guid: 63ceb5b3947a7284099d3cc9f57557e9
+  - enabled: 1
+    path: Assets/Scenes/Niveaux/Niveau_2.unity
+    guid: b42235bf6ec6572469b8d6dcdcebb003
+  - enabled: 1
+    path: Assets/Scenes/Niveaux/Niveau_3.unity
+    guid: 4c8ea642afae6a443a308376d7f9acee
+  - enabled: 1
+    path: Assets/Scenes/Niveaux/Niveau_4.unity
+    guid: efe5ef1fed4071b4c96062405ed1500c
+  - enabled: 1
+    path: Assets/Scenes/Niveaux/Niveau_5.unity
+    guid: c9586a473a109384186e98d672c781bf
+  - enabled: 1
+    path: Assets/Scenes/Niveaux/Niveau_6.unity
+    guid: 05b70396025e9ac4bacf5ff4c6da7ed7
+  - enabled: 1
+    path: Assets/Scenes/Niveaux/Niveau_7.unity
+    guid: f0112e34576759648b2ac0df2977e7c7
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
