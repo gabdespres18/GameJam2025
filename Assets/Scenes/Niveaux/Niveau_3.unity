@@ -31951,10 +31951,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1742343232596136134, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
-      propertyPath: m_Name
-      value: DigitalClock (5)
-      objectReference: {fileID: 0}
     - target: {fileID: 1397764451125594748, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
       propertyPath: m_LocalScale.z
       value: -1
@@ -31999,11 +31995,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1742343232596136134, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
+      propertyPath: m_Name
+      value: DigitalClock (5)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
+--- !u!114 &991825275 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1180974459990646461, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
+  m_PrefabInstance: {fileID: 991825274}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9c25041ff1b8944964bd0e920933f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &992973840
 GameObject:
   m_ObjectHideFlags: 0
@@ -38210,10 +38221,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1742343232596136134, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
-      propertyPath: m_Name
-      value: DigitalClock (4)
-      objectReference: {fileID: 0}
     - target: {fileID: 1397764451125594748, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
       propertyPath: m_LocalScale.z
       value: -1
@@ -38258,11 +38265,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1742343232596136134, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
+      propertyPath: m_Name
+      value: DigitalClock (4)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
+--- !u!114 &1160301246 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1180974459990646461, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
+  m_PrefabInstance: {fileID: 1160301245}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9c25041ff1b8944964bd0e920933f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1160330358
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43093,10 +43115,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1742343232596136134, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
-      propertyPath: m_Name
-      value: DigitalClock (3)
-      objectReference: {fileID: 0}
     - target: {fileID: 1397764451125594748, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
       propertyPath: m_LocalScale.z
       value: -1
@@ -43141,11 +43159,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1742343232596136134, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
+      propertyPath: m_Name
+      value: DigitalClock (3)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
+--- !u!114 &1293701499 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1180974459990646461, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
+  m_PrefabInstance: {fileID: 1293701498}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9c25041ff1b8944964bd0e920933f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1296011662
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43399,10 +43432,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1742343232596136134, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
-      propertyPath: m_Name
-      value: DigitalClock (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 1397764451125594748, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
       propertyPath: m_LocalScale.z
       value: -1
@@ -43447,11 +43476,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1742343232596136134, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
+      propertyPath: m_Name
+      value: DigitalClock (2)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
+--- !u!114 &1313469727 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1180974459990646461, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
+  m_PrefabInstance: {fileID: 1313469726}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9c25041ff1b8944964bd0e920933f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1314291748
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43514,7 +43558,7 @@ PrefabInstance:
       objectReference: {fileID: 453617639}
     - target: {fileID: 7450596596856292489, guid: ead89fa0685eb8a4889b2238eff0b78a, type: 3}
       propertyPath: clocks.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7450596596856292489, guid: ead89fa0685eb8a4889b2238eff0b78a, type: 3}
       propertyPath: clones.Array.size
@@ -43527,27 +43571,31 @@ PrefabInstance:
     - target: {fileID: 7450596596856292489, guid: ead89fa0685eb8a4889b2238eff0b78a, type: 3}
       propertyPath: 'clocks.Array.data[0]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2625119280478585770}
     - target: {fileID: 7450596596856292489, guid: ead89fa0685eb8a4889b2238eff0b78a, type: 3}
       propertyPath: 'clocks.Array.data[1]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2130298115}
     - target: {fileID: 7450596596856292489, guid: ead89fa0685eb8a4889b2238eff0b78a, type: 3}
       propertyPath: 'clocks.Array.data[2]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1313469727}
     - target: {fileID: 7450596596856292489, guid: ead89fa0685eb8a4889b2238eff0b78a, type: 3}
       propertyPath: 'clocks.Array.data[3]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1293701499}
     - target: {fileID: 7450596596856292489, guid: ead89fa0685eb8a4889b2238eff0b78a, type: 3}
       propertyPath: 'clocks.Array.data[4]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1160301246}
     - target: {fileID: 7450596596856292489, guid: ead89fa0685eb8a4889b2238eff0b78a, type: 3}
       propertyPath: 'clocks.Array.data[5]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 991825275}
+    - target: {fileID: 7450596596856292489, guid: ead89fa0685eb8a4889b2238eff0b78a, type: 3}
+      propertyPath: 'clocks.Array.data[6]'
+      value: 
+      objectReference: {fileID: 1535839149}
     - target: {fileID: 7450596596856292489, guid: ead89fa0685eb8a4889b2238eff0b78a, type: 3}
       propertyPath: 'clones.Array.data[0]'
       value: 
@@ -49827,10 +49875,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1742343232596136134, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
-      propertyPath: m_Name
-      value: DigitalClock (6)
-      objectReference: {fileID: 0}
     - target: {fileID: 1397764451125594748, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
       propertyPath: m_LocalScale.z
       value: -1
@@ -49875,11 +49919,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1742343232596136134, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
+      propertyPath: m_Name
+      value: DigitalClock (6)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
+--- !u!114 &1535839149 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1180974459990646461, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
+  m_PrefabInstance: {fileID: 1535839148}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9c25041ff1b8944964bd0e920933f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1541509212
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67451,10 +67510,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1742343232596136134, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
-      propertyPath: m_Name
-      value: DigitalClock (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 1397764451125594748, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
       propertyPath: m_LocalScale.z
       value: -1
@@ -67499,11 +67554,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1742343232596136134, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
+      propertyPath: m_Name
+      value: DigitalClock (1)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
+--- !u!114 &2130298115 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1180974459990646461, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
+  m_PrefabInstance: {fileID: 2130298114}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9c25041ff1b8944964bd0e920933f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2132133204
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -68076,10 +68146,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1742343232596136134, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
-      propertyPath: m_Name
-      value: DigitalClock
-      objectReference: {fileID: 0}
     - target: {fileID: 1397764451125594748, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.3255959
@@ -68120,11 +68186,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1742343232596136134, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
+      propertyPath: m_Name
+      value: DigitalClock
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
+--- !u!114 &2625119280478585770 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1180974459990646461, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
+  m_PrefabInstance: {fileID: 2625119280478585769}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9c25041ff1b8944964bd0e920933f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4005614857502157070
 PrefabInstance:
   m_ObjectHideFlags: 0

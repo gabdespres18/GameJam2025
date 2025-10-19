@@ -14126,10 +14126,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1742343232596136134, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
-      propertyPath: m_Name
-      value: DigitalClock (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 1397764451125594748, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
       propertyPath: m_LocalScale.z
       value: -1
@@ -14174,11 +14170,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1742343232596136134, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
+      propertyPath: m_Name
+      value: DigitalClock (1)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
+--- !u!114 &1948853077 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1180974459990646461, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
+  m_PrefabInstance: {fileID: 1948853076}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9c25041ff1b8944964bd0e920933f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1951840689
 Mesh:
   m_ObjectHideFlags: 0
@@ -15628,11 +15639,11 @@ PrefabInstance:
     - target: {fileID: 7450596596856292489, guid: ead89fa0685eb8a4889b2238eff0b78a, type: 3}
       propertyPath: 'clocks.Array.data[0]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2086283873}
     - target: {fileID: 7450596596856292489, guid: ead89fa0685eb8a4889b2238eff0b78a, type: 3}
       propertyPath: 'clocks.Array.data[1]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1948853077}
     - target: {fileID: 7450596596856292489, guid: ead89fa0685eb8a4889b2238eff0b78a, type: 3}
       propertyPath: 'clones.Array.data[0]'
       value: 
@@ -16272,10 +16283,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1742343232596136134, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
-      propertyPath: m_Name
-      value: DigitalClock
-      objectReference: {fileID: 0}
     - target: {fileID: 1397764451125594748, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
       propertyPath: m_LocalScale.z
       value: -1
@@ -16320,11 +16327,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1742343232596136134, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
+      propertyPath: m_Name
+      value: DigitalClock
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
+--- !u!114 &2086283873 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1180974459990646461, guid: 857873ca2c8940c42a1f7020f2fa187c, type: 3}
+  m_PrefabInstance: {fileID: 2086283872}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9c25041ff1b8944964bd0e920933f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2112487792
 PrefabInstance:
   m_ObjectHideFlags: 0
