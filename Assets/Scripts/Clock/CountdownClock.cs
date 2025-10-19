@@ -7,6 +7,10 @@ public class CountdownClock : MonoBehaviour
     [SerializeField] TextMeshProUGUI timertext;
     [SerializeField] float remainingTime;
     public bool timeOver = false;
+
+    [Header("Sounds")]
+    [SerializeField] private AudioSource clockSound;
+    
     int heure = 4;
     private float time;
 
@@ -15,6 +19,9 @@ public class CountdownClock : MonoBehaviour
     {
         timertext.color = Color.red;
         ResetTime(remainingTime);
+
+        if (clockSound != null )
+            InvokeRepeating("TickTock", 0.6f, 25f);
     }
 
     void FixedUpdate()
@@ -39,5 +46,10 @@ public class CountdownClock : MonoBehaviour
     public void ResetTime(float t)
     {
         time = t;
+    }
+
+    void TickTock()
+    {
+        clockSound.Play();
     }
 }

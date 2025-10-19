@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
                 playerCol = true;
         }
 
-            if (clocks[0] != null)
+        if (clocks[0] != null)
             timeOver = clocks[0].timeOver;
 
         // Handle clones when player finishes a door
