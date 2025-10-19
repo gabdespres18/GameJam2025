@@ -102,7 +102,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         //initPos = transform;
-        transform.parent.position = spawns[numDoor].position  + new Vector3(0, 0.91f, 0);
+        transform.parent.position = spawns[numDoor].position  + new Vector3(0, 0.5f, 0);
         transform.parent.rotation = spawns[numDoor].rotation;
 
         clones = new List<Clones>();
@@ -262,7 +262,7 @@ public class Player : MonoBehaviour
 
     public void Reset()
     {
-        transform.parent.position = spawns[numDoor].position + new Vector3(0, 1f, 0);
+        transform.parent.position = spawns[numDoor].position + new Vector3(0, 0.5f, 0);
         transform.parent.rotation = spawns[numDoor].rotation;
 
         record = true;
