@@ -3,6 +3,26 @@
   "WorkspaceRootPath": "D:\\GitHubRepo\\GameJamQC\\GameJam2025\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GitHubRepo\\GameJamQC\\GameJam2025\\Assets\\Scripts\\DoorTriggerActivator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\DoorTriggerActivator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GitHubRepo\\GameJamQC\\GameJam2025\\Assets\\Scripts\\GameManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\GameManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GitHubRepo\\GameJamQC\\GameJam2025\\Assets\\Scripts\\Player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GitHubRepo\\GameJamQC\\GameJam2025\\Assets\\Scripts\\Clone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Clone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GitHubRepo\\GameJamQC\\GameJam2025\\Assets\\Scripts\\SceneLoader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\SceneLoader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GitHubRepo\\GameJamQC\\GameJam2025\\Library\\PackageCache\\com.unity.render-pipelines.universal@2a2241f53fcd\\Shaders\\Lit.shader||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Library\\PackageCache\\com.unity.render-pipelines.universal@2a2241f53fcd\\Shaders\\Lit.shader||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
@@ -23,6 +43,71 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "DoorTriggerActivator.cs",
+              "DocumentMoniker": "D:\\GitHubRepo\\GameJamQC\\GameJam2025\\Assets\\Scripts\\DoorTriggerActivator.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\DoorTriggerActivator.cs",
+              "ToolTip": "D:\\GitHubRepo\\GameJamQC\\GameJam2025\\Assets\\Scripts\\DoorTriggerActivator.cs",
+              "RelativeToolTip": "Assets\\Scripts\\DoorTriggerActivator.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-19T14:24:56.969Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "D:\\GitHubRepo\\GameJamQC\\GameJam2025\\Assets\\Scripts\\GameManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\GameManager.cs",
+              "ToolTip": "D:\\GitHubRepo\\GameJamQC\\GameJam2025\\Assets\\Scripts\\GameManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\GameManager.cs",
+              "ViewState": "AQIAADYAAAAAAAAAAAAAAEsAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-19T12:59:30.764Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Clone.cs",
+              "DocumentMoniker": "D:\\GitHubRepo\\GameJamQC\\GameJam2025\\Assets\\Scripts\\Clone.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Clone.cs",
+              "ToolTip": "D:\\GitHubRepo\\GameJamQC\\GameJam2025\\Assets\\Scripts\\Clone.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Clone.cs",
+              "ViewState": "AQIAAJEAAAAAAAAAAAAIwKgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-19T12:42:40.898Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Player.cs",
+              "DocumentMoniker": "D:\\GitHubRepo\\GameJamQC\\GameJam2025\\Assets\\Scripts\\Player.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player.cs",
+              "ToolTip": "D:\\GitHubRepo\\GameJamQC\\GameJam2025\\Assets\\Scripts\\Player.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player.cs",
+              "ViewState": "AQIAAH4AAAAAAAAAAAAAAI8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-19T12:22:44.12Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SceneLoader.cs",
+              "DocumentMoniker": "D:\\GitHubRepo\\GameJamQC\\GameJam2025\\Assets\\Scripts\\SceneLoader.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\SceneLoader.cs",
+              "ToolTip": "D:\\GitHubRepo\\GameJamQC\\GameJam2025\\Assets\\Scripts\\SceneLoader.cs",
+              "RelativeToolTip": "Assets\\Scripts\\SceneLoader.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-19T12:16:39.764Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "Lit.shader",
               "DocumentMoniker": "D:\\GitHubRepo\\GameJamQC\\GameJam2025\\Library\\PackageCache\\com.unity.render-pipelines.universal@2a2241f53fcd\\Shaders\\Lit.shader",
               "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.render-pipelines.universal@2a2241f53fcd\\Shaders\\Lit.shader",
@@ -30,12 +115,11 @@
               "RelativeToolTip": "Library\\PackageCache\\com.unity.render-pipelines.universal@2a2241f53fcd\\Shaders\\Lit.shader",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
-              "WhenOpened": "2025-10-18T17:45:32.37Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-18T17:45:32.37Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "CountdownClock.cs",
               "DocumentMoniker": "D:\\GitHubRepo\\GameJamQC\\GameJam2025\\Assets\\Scripts\\Clock\\CountdownClock.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Clock\\CountdownClock.cs",
@@ -43,8 +127,7 @@
               "RelativeToolTip": "Assets\\Scripts\\Clock\\CountdownClock.cs",
               "ViewState": "AgIAAA4AAAAAAAAAAAAuwCQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-18T13:01:58.637Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-18T13:01:58.637Z"
             }
           ]
         }
