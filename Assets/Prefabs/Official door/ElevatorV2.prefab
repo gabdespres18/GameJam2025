@@ -64,7 +64,7 @@ GameObject:
   - component: {fileID: 3422345231017424698}
   - component: {fileID: 1421548536456656261}
   m_Layer: 0
-  m_Name: InsideTrigger
+  m_Name: Spawn0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
