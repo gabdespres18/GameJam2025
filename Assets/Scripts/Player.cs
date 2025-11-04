@@ -2,33 +2,19 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+// --- STRUCT DEFINITIONS (CRITICAL) ---
 public struct Inputs
 {
-    public bool w;
-    public bool a;
-    public bool s;
-    public bool d;
-
-    public bool shift;
-    public bool ctrl;
-    public bool interact;
-
-    // We record the calculated rotations instead of raw mouse input for better replay accuracy
-    public float RotLeftRight;
-    public float RotUpDown;
-    public float CameraXRotation; // Record the final camera pitch angle
+    public bool w; public bool a; public bool s; public bool d;
+    public bool shift; public bool ctrl; public bool interact;
+    public float RotLeftRight; public float RotUpDown;
+    public float CameraXRotation;
 
     public Inputs(bool w, bool a, bool s, bool d, bool shift, bool ctrl, bool interact, float rotLR, float rotUD, float camXRot)
     {
-        this.w = w;
-        this.a = a;
-        this.s = s;
-        this.d = d;
-        this.shift = shift;
-        this.ctrl = ctrl;
-        this.interact = interact;
-        this.RotLeftRight = rotLR;
-        this.RotUpDown = rotUD;
+        this.w = w; this.a = a; this.s = s; this.d = d;
+        this.shift = shift; this.ctrl = ctrl; this.interact = interact;
+        this.RotLeftRight = rotLR; this.RotUpDown = rotUD;
         this.CameraXRotation = camXRot;
     }
 }
@@ -51,6 +37,7 @@ public enum CardAccess
     B,
     C
 }
+// -------------------------------------
 
 public class Player : MonoBehaviour
 {
@@ -80,16 +67,14 @@ public class Player : MonoBehaviour
     private bool recording;
     private float rotLeftRight;
     private float rotUpDown;
-    private float xRotation = 0f;
+    private float xRotation = 0f; // Tracks camera pitch
 
-    private int nbClones = 0;
     private int i;
-    private int j;
     private float multiplier = 0.0f;
 
     public bool isRealPlayer = true;
 
-    public CardAccess currentAccess = CardAccess.A; // Start with A
+    public CardAccess currentAccess = CardAccess.A;
 
     [Header("Card UI Objects")]
     public GameObject cardA_UI;
@@ -103,32 +88,20 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        // Set player body position and rotation (on the parent object)
         transform.parent.position = spawns[numDoor].position + new Vector3(0, 0f, 0);
         transform.parent.rotation = spawns[numDoor].rotation;
 
         clones = new List<RecordedSegment>();
-
         record = true;
-
         animator = GetComponentInChildren<Animator>();
+        i = 0;
 
-        // *** FIX: Explicitly initialize the camera rotation for a level gaze ***
-        xRotation = 0f; // Ensure the internal pitch variable is 0
+        // Fix camera pitch on start
+        xRotation = 0f;
         if (Camera.main != null)
         {
-            // Apply 0 pitch to the camera's local rotation
             Camera.main.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         }
-        else
-        {
-            Debug.LogError("Player script could not find the Main Camera! Check your tag.");
-        }
-        // ************************************************************************
-
-        //Screen.lockCursor = true; // Uncomment if desired
-
-        i = 0;
 
         UpdateCardUI();
     }
@@ -145,21 +118,17 @@ public class Player : MonoBehaviour
     {
         Vector3 movement = Vector3.zero;
 
-        // Reset rotation values before reading input
         rotLeftRight = 0f;
         rotUpDown = 0f;
 
-        if (!SceneLoader.IsPaused) // Assuming SceneLoader.IsPaused exists
+        if (!SceneLoader.IsPaused)
         {
             /********** Live Input Reading **********/
-
-            // Movement Input
             if (Input.GetKey(KeyCode.S)) { movement += Vector3.back; }
             if (Input.GetKey(KeyCode.W)) { movement += Vector3.forward; }
             if (Input.GetKey(KeyCode.D)) { movement += Vector3.right; }
             if (Input.GetKey(KeyCode.A)) { movement += Vector3.left; }
 
-            // Speed
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 multiplier = movementSprint;
@@ -170,11 +139,8 @@ public class Player : MonoBehaviour
                 multiplier = movementWalk;
                 IsRunning = false;
             }
-
-            // Walking status
             IsWalking = movement != Vector3.zero;
 
-            // Mouse Input
             mouseX = Input.GetAxis("Mouse X");
             mouseY = Input.GetAxis("Mouse Y");
 
@@ -183,11 +149,7 @@ public class Player : MonoBehaviour
         }
 
         /********** Movement Calculation **********/
-
-        // Apply movement
         transform.parent.Translate(movement * multiplier * Time.deltaTime, Space.Self);
-
-        // Apply horizontal rotation (player/parent rotation)
         transform.parent.Rotate(0, rotLeftRight, 0);
 
         // Apply vertical rotation (camera/child rotation)
@@ -200,7 +162,6 @@ public class Player : MonoBehaviour
 
 
         /********** Record **********/
-
         if (record)
         {
             if (!recording)
@@ -209,7 +170,6 @@ public class Player : MonoBehaviour
                 recording = true;
             }
 
-            // Record all necessary inputs and calculated rotation values for precise replay
             clones[numDoor].inputs.Add(new Inputs(
                 Input.GetKey(KeyCode.W),
                 Input.GetKey(KeyCode.A),
@@ -220,13 +180,12 @@ public class Player : MonoBehaviour
                 Input.GetKey(KeyCode.Mouse0),
                 rotLeftRight,
                 rotUpDown,
-                xRotation)); // Record the final camera pitch
+                xRotation));
             i++;
         }
 
 
         /********** Animator **********/
-        // (Animator logic remains the same)
         if (rotLeftRight > 0.2f)
         {
             animator.SetBool("IsRightTurn", true);
@@ -251,20 +210,10 @@ public class Player : MonoBehaviour
 
         animator.SetBool("IsWalking", IsWalking);
         animator.SetBool("IsRunning", IsRunning);
-
     }
 
     void OnTriggerEnter(Collider col)
     {
-        // Assuming CardZone exists or this is placeholder logic
-        // CardZone zone = col.GetComponent<CardZone>();
-        // if (zone != null)
-        // {
-        //     currentAccess = zone.accessType;
-        //     UpdateCardUI(); 
-        // }
-
-        // Keep your existing door logic
         if (col.gameObject.name == "Spawn" + (numDoor + 1))
         {
             record = false;

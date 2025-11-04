@@ -2,22 +2,20 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-// Assuming the Inputs struct is copied or referenced from Player.cs
-// (Ensure Inputs is a struct or class with the fields used below)
+// Note: Ensure Inputs and CardAccess structs/enums are accessible.
 
 public class Clone : MonoBehaviour
 {
     public List<Inputs> inputs;
 
     public Transform initPos;
-    public bool startReplay;
+    public bool startReplay = false;
 
     public float movementSprint = 5.0f;
     public float movementWalk = 2.0f;
     public float mouseSens = 10.0f;
 
     public int currentDoor;
-    public float waitTime = 0;
 
     public bool IsWalking;
     public bool IsRunning;
@@ -28,18 +26,21 @@ public class Clone : MonoBehaviour
 
     private float rotLeftRight;
     private float rotUpDown;
-    private float xRotation = 0f; // This will now hold the recorded camera pitch
+    private float xRotation = 0f;
 
     private int i;
     private int j;
     private float multiplier = 0.0f;
 
-    public CardAccess currentAccess = CardAccess.A; // CardAccess needs to be defined elsewhere
+    public CardAccess currentAccess = CardAccess.A;
 
     public bool playerCollision = false;
 
-    // A reference to the clone's 'head' or 'camera' object (should be the HEAD BONE)
     public Transform cloneHead;
+
+    public Rigidbody rb;
+    public Collider mainCollider;
+    public List<Collider> allColliders; // *** CRITICAL: List to hold all colliders (for Game Manager to disable) ***
 
     [Header("Sounds")]
     [SerializeField] private AudioSource step1;
@@ -47,31 +48,17 @@ public class Clone : MonoBehaviour
 
     void Start()
     {
-        // Set initial position and rotation
-        transform.position = initPos.position + new Vector3(0, 0.91f, 0);
-        transform.rotation = initPos.rotation;
-
         animator = GetComponentInChildren<Animator>();
+        rb = GetComponent<Rigidbody>();
+        mainCollider = GetComponent<Collider>();
 
-        // Find the head bone if not set in inspector
-        if (cloneHead == null)
+        if (cloneHead == null && transform.childCount > 0)
         {
-            // !!! IMPORTANT: YOU MUST REPLACE THIS STRING with the correct path to your character's head bone.
-            // Example: "Ch44_nonPBR@Idle/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/mixamorig:Head"
-            Transform headBone = transform.Find("PATH_TO_YOUR_HEAD_BONE_HERE");
-
-            if (headBone != null)
-            {
-                cloneHead = headBone;
-            }
-            else
-            {
-                Debug.LogError("Clone script: Head bone not found. Vertical rotation (looking up/down) will not work correctly.");
-                // Fallback (might rotate the whole character mesh, which is usually wrong)
-                if (transform.childCount > 0)
-                    cloneHead = transform.GetChild(0);
-            }
+            cloneHead = transform.GetChild(0);
         }
+
+        // CRITICAL: Get ALL colliders in the hierarchy, including inactive ones.
+        allColliders = new List<Collider>(GetComponentsInChildren<Collider>(true));
 
         i = 0;
         j = 0;
@@ -81,19 +68,20 @@ public class Clone : MonoBehaviour
     {
         Vector3 movement = Vector3.zero;
 
-        /********** Replay **********/
+        rotLeftRight = 0f;
+        IsWalking = false;
+        IsRunning = false;
 
+        /********** Replay **********/
         if (startReplay)
         {
             if (j <= inputs.Count - 1)
             {
-                // Read movement input
                 if (inputs[j].s) { movement += Vector3.back; }
                 if (inputs[j].w) { movement += Vector3.forward; }
                 if (inputs[j].d) { movement += Vector3.right; }
                 if (inputs[j].a) { movement += Vector3.left; }
 
-                // Speed
                 if (inputs[j].shift)
                 {
                     multiplier = movementSprint;
@@ -106,25 +94,21 @@ public class Clone : MonoBehaviour
                 }
                 IsWalking = movement != Vector3.zero;
 
-                // Use the recorded, scaled rotation values directly
                 rotLeftRight = inputs[j].RotLeftRight;
-                rotUpDown = inputs[j].RotUpDown;
-                xRotation = inputs[j].CameraXRotation; // Get the recorded camera pitch
+                xRotation = inputs[j].CameraXRotation;
 
                 /********** Movement **********/
-
-                // Apply movement
                 transform.Translate(movement * multiplier * Time.deltaTime, Space.Self);
-
-                // Apply horizontal rotation (rotation of the character's body)
                 transform.Rotate(0, rotLeftRight, 0);
 
-                // Apply vertical rotation to the designated clone head/camera object (bone)
                 if (cloneHead != null)
                 {
-                    // Directly apply the recorded camera pitch (xRotation)
-                    // The 'xRotation' should be in local space (pitch)
-                    cloneHead.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+                    float finalXRotation = xRotation;
+                    if (j < 10)
+                    {
+                        finalXRotation = 0f;
+                    }
+                    cloneHead.localRotation = Quaternion.Euler(finalXRotation, 0f, 0f);
                 }
 
                 j++;
@@ -137,7 +121,6 @@ public class Clone : MonoBehaviour
         }
 
         /********** Animator **********/
-        // (Animator logic remains the same)
         if (rotLeftRight > 0.2f)
         {
             animator.SetBool("IsRightTurn", true);
@@ -166,52 +149,34 @@ public class Clone : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.name == "Spawn" + currentDoor)
-        {
-            // Trigger logic here
-        }
-
         if (col.gameObject.name == "PlayerCollision")
             playerCollision = true;
     }
 
     public void Reset()
     {
-        transform.position = initPos.position + new Vector3(0, 0.91f, 0);
-        transform.rotation = initPos.rotation;
-
-        // Reset vertical rotation on the clone's head/camera if it exists
+        // Physics is fully managed by GameManager. This just clears internal state.
         if (cloneHead != null)
             cloneHead.localRotation = Quaternion.identity;
 
-        // *** FIX FOR FACING THE GROUND (and CS1612) ***
-        // Zero out the vertical rotation for the first few frames (up to 5)
-        // to ensure the clone starts looking straight ahead.
-        for (int k = 0; k < Mathf.Min(inputs.Count, 5); k++)
+        // Fix the first few recorded inputs
+        if (inputs != null)
         {
-            // 1. Read the struct out
-            Inputs inputToFix = inputs[k];
-
-            // 2. Modify the field
-            inputToFix.CameraXRotation = 0f;
-
-            // 3. Write the modified struct back
-            inputs[k] = inputToFix;
+            for (int k = 0; k < Mathf.Min(inputs.Count, 5); k++)
+            {
+                Inputs inputToFix = inputs[k];
+                inputToFix.CameraXRotation = 0f;
+                inputs[k] = inputToFix;
+            }
         }
-        // ***********************************************
 
         startReplay = false;
         playerCollision = false;
         j = 0;
-
-        // Use StopCoroutine/StartCoroutine pattern for safety
-        StopCoroutine(WaitingForSpawn());
-        StartCoroutine(WaitingForSpawn());
     }
 
-    private IEnumerator WaitingForSpawn()
+    public void StartReplay()
     {
-        yield return new WaitForSeconds(waitTime);
         startReplay = true;
     }
 
@@ -219,5 +184,4 @@ public class Clone : MonoBehaviour
     {
         currentAccess = access;
     }
-
 }
