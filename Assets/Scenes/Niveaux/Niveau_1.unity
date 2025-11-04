@@ -5975,6 +5975,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7085838261301805559, guid: 26a185aea6dac104d941eebc3900ad0a, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11498,6 +11502,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6907908890082335292, guid: c2512c26b1e15434dbc36ac3c453f70e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 4.449463
+      objectReference: {fileID: 0}
     - target: {fileID: 7197507194726580978, guid: c2512c26b1e15434dbc36ac3c453f70e, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -12184,13 +12192,21 @@ PrefabInstance:
       propertyPath: 'spawns.Array.data[2]'
       value: 
       objectReference: {fileID: 510153629}
+    - target: {fileID: 2731856124103976367, guid: a455306c8cc513e4a87c1a2971bc84cd, type: 3}
+      propertyPath: m_Constraints
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 3410566571297212104, guid: a455306c8cc513e4a87c1a2971bc84cd, type: 3}
       propertyPath: m_Name
       value: PlayerParent
       objectReference: {fileID: 0}
+    - target: {fileID: 3675907316561382324, guid: a455306c8cc513e4a87c1a2971bc84cd, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5033392736705198676, guid: a455306c8cc513e4a87c1a2971bc84cd, type: 3}
       propertyPath: m_Constraints
-      value: 64
+      value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 8580406642842988567, guid: a455306c8cc513e4a87c1a2971bc84cd, type: 3}
       propertyPath: m_LocalPosition.x

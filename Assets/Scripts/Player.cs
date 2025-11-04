@@ -13,10 +13,12 @@ public struct Inputs
     public bool ctrl;
     public bool interact;
 
-    public float MouseX;
-    public float MouseY;
+    // We record the calculated rotations instead of raw mouse input for better replay accuracy
+    public float RotLeftRight;
+    public float RotUpDown;
+    public float CameraXRotation; // New: Record the final camera pitch angle
 
-    public Inputs(bool w, bool a, bool s, bool d, bool shift, bool ctrl, bool interact, float MouseX, float MouseY)
+    public Inputs(bool w, bool a, bool s, bool d, bool shift, bool ctrl, bool interact, float rotLR, float rotUD, float camXRot)
     {
         this.w = w;
         this.a = a;
@@ -25,17 +27,19 @@ public struct Inputs
         this.shift = shift;
         this.ctrl = ctrl;
         this.interact = interact;
-        this.MouseX = MouseX;
-        this.MouseY = MouseY;
+        this.RotLeftRight = rotLR;
+        this.RotUpDown = rotUD;
+        this.CameraXRotation = camXRot;
     }
 }
 
-public struct Clones
+// Renamed Clones to RecordedSegment for clarity
+public struct RecordedSegment
 {
     public List<Inputs> inputs;
     public Transform initialPos;
 
-    public Clones(Transform pos)
+    public RecordedSegment(Transform pos)
     {
         this.inputs = new List<Inputs>();
         this.initialPos = pos;
@@ -51,8 +55,8 @@ public enum CardAccess
 
 public class Player : MonoBehaviour
 {
-    public Transform player;
-    public List<Clones> clones;
+    // public Transform player; // Removed: Unused, transform.parent is used instead
+    public List<RecordedSegment> clones; // Renamed from 'clones'
     public List<Transform> spawns;
     public bool record;
     public bool startReplay;
@@ -102,10 +106,10 @@ public class Player : MonoBehaviour
     void Start()
     {
         //initPos = transform;
-        transform.parent.position = spawns[numDoor].position  + new Vector3(0, 0f, 0);
+        transform.parent.position = spawns[numDoor].position + new Vector3(0, 0f, 0);
         transform.parent.rotation = spawns[numDoor].rotation;
 
-        clones = new List<Clones>();
+        clones = new List<RecordedSegment>(); // Changed type to RecordedSegment
 
         record = true;
 
@@ -114,6 +118,8 @@ public class Player : MonoBehaviour
         //Screen.lockCursor = true;
 
         i = 0;
+
+        UpdateCardUI(); // Ensure UI starts correctly
     }
 
     public void UpdateCardUI()
@@ -128,30 +134,21 @@ public class Player : MonoBehaviour
     {
         Vector3 movement = Vector3.zero;
 
+        // Reset rotation values before reading input
+        rotLeftRight = 0f;
+        rotUpDown = 0f;
+
         if (!SceneLoader.IsPaused)
         {
-            /********** Live **********/
+            /********** Live Input Reading **********/
 
-            if (Input.GetKey(KeyCode.S))
-            {
-                movement += Vector3.back;
-            }
+            // Movement Input
+            if (Input.GetKey(KeyCode.S)) { movement += Vector3.back; }
+            if (Input.GetKey(KeyCode.W)) { movement += Vector3.forward; }
+            if (Input.GetKey(KeyCode.D)) { movement += Vector3.right; }
+            if (Input.GetKey(KeyCode.A)) { movement += Vector3.left; }
 
-            if (Input.GetKey(KeyCode.W))
-            {
-                movement += Vector3.forward;
-            }
-
-            if (Input.GetKey(KeyCode.D))
-            {
-                movement += Vector3.right;
-            }
-
-            if (Input.GetKey(KeyCode.A))
-            {
-                movement += Vector3.left;
-            }
-
+            // Speed
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 multiplier = movementSprint;
@@ -162,11 +159,11 @@ public class Player : MonoBehaviour
                 multiplier = movementWalk;
                 IsRunning = false;
             }
-            if (movement != Vector3.zero)
-                IsWalking = true;
-            else
-                IsWalking = false;
 
+            // Walking status
+            IsWalking = movement != Vector3.zero;
+
+            // Mouse Input
             mouseX = Input.GetAxis("Mouse X");
             mouseY = Input.GetAxis("Mouse Y");
 
@@ -174,16 +171,31 @@ public class Player : MonoBehaviour
             rotUpDown = mouseY * mouseSens;
         }
 
+        /********** Movement Calculation **********/
+
+        // Apply movement
+        transform.parent.Translate(movement * multiplier * Time.deltaTime, Space.Self);
+
+        // Apply horizontal rotation (player/parent rotation)
+        transform.parent.Rotate(0, rotLeftRight, 0);
+
+        // Apply vertical rotation (camera/child rotation)
+        xRotation -= rotUpDown;
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        Camera.main.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+
+
         /********** Record **********/
 
         if (record)
         {
-            if(!recording)
+            if (!recording)
             {
-                clones.Add(new Clones(spawns[numDoor]));
+                clones.Add(new RecordedSegment(spawns[numDoor])); // Changed struct name
                 recording = true;
             }
 
+            // Record all necessary inputs and calculated rotation values for precise replay
             clones[numDoor].inputs.Add(new Inputs(
                 Input.GetKey(KeyCode.W),
                 Input.GetKey(KeyCode.A),
@@ -192,28 +204,15 @@ public class Player : MonoBehaviour
                 Input.GetKey(KeyCode.LeftShift),
                 Input.GetKey(KeyCode.LeftControl),
                 Input.GetKey(KeyCode.Mouse0),
-                mouseX,
-                mouseY));
+                rotLeftRight, // Record the actual rotation applied
+                rotUpDown,    // Record the actual rotation applied
+                xRotation));  // Record the final camera pitch
             i++;
         }
 
 
-        /********** Movement **********/
-
-        // Change la position
-        transform.parent.Translate(movement * multiplier * Time.deltaTime, Space.Self);
-
-        // Change la rotation gauche droite du player
-        transform.parent.Rotate(0, rotLeftRight, 0);
-        
-        // Change la rotation haut bas de la caméra
-        xRotation -= rotUpDown;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-        Camera.main.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-
-
         /********** Animator **********/
-
+        // (Animator logic remains the same)
         if (rotLeftRight > 0.2f)
         {
             animator.SetBool("IsRightTurn", true);
@@ -248,6 +247,7 @@ public class Player : MonoBehaviour
         if (zone != null)
         {
             currentAccess = zone.accessType;
+            UpdateCardUI(); // <--- Call added here
             Debug.Log("Player got access: " + currentAccess);
         }
 
@@ -268,6 +268,7 @@ public class Player : MonoBehaviour
         record = true;
         finishedRecording = false;
         i = 0;
+        xRotation = 0f; // Reset camera rotation
     }
 
     public void ResetCurrentRecord()
