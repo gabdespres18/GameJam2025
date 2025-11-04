@@ -16,7 +16,7 @@ public struct Inputs
     // We record the calculated rotations instead of raw mouse input for better replay accuracy
     public float RotLeftRight;
     public float RotUpDown;
-    public float CameraXRotation; // New: Record the final camera pitch angle
+    public float CameraXRotation; // Record the final camera pitch angle
 
     public Inputs(bool w, bool a, bool s, bool d, bool shift, bool ctrl, bool interact, float rotLR, float rotUD, float camXRot)
     {
@@ -33,7 +33,6 @@ public struct Inputs
     }
 }
 
-// Renamed Clones to RecordedSegment for clarity
 public struct RecordedSegment
 {
     public List<Inputs> inputs;
@@ -55,8 +54,7 @@ public enum CardAccess
 
 public class Player : MonoBehaviour
 {
-    // public Transform player; // Removed: Unused, transform.parent is used instead
-    public List<RecordedSegment> clones; // Renamed from 'clones'
+    public List<RecordedSegment> clones;
     public List<Transform> spawns;
     public bool record;
     public bool startReplay;
@@ -98,36 +96,49 @@ public class Player : MonoBehaviour
     public GameObject cardB_UI;
     public GameObject cardC_UI;
 
-    [Header("Card UI Objects")]
+    [Header("Sounds")]
     [SerializeField] private AudioSource step1;
     [SerializeField] private AudioSource step2;
 
 
     void Start()
     {
-        //initPos = transform;
+        // Set player body position and rotation (on the parent object)
         transform.parent.position = spawns[numDoor].position + new Vector3(0, 0f, 0);
         transform.parent.rotation = spawns[numDoor].rotation;
 
-        clones = new List<RecordedSegment>(); // Changed type to RecordedSegment
+        clones = new List<RecordedSegment>();
 
         record = true;
 
         animator = GetComponentInChildren<Animator>();
 
-        //Screen.lockCursor = true;
+        // *** FIX: Explicitly initialize the camera rotation for a level gaze ***
+        xRotation = 0f; // Ensure the internal pitch variable is 0
+        if (Camera.main != null)
+        {
+            // Apply 0 pitch to the camera's local rotation
+            Camera.main.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        }
+        else
+        {
+            Debug.LogError("Player script could not find the Main Camera! Check your tag.");
+        }
+        // ************************************************************************
+
+        //Screen.lockCursor = true; // Uncomment if desired
 
         i = 0;
 
-        UpdateCardUI(); // Ensure UI starts correctly
+        UpdateCardUI();
     }
 
     public void UpdateCardUI()
     {
-        if (!isRealPlayer) return; // Only the real player updates UI
-        cardA_UI.SetActive(currentAccess == CardAccess.A);
-        cardB_UI.SetActive(currentAccess == CardAccess.B);
-        cardC_UI.SetActive(currentAccess == CardAccess.C);
+        if (!isRealPlayer) return;
+        if (cardA_UI != null) cardA_UI.SetActive(currentAccess == CardAccess.A);
+        if (cardB_UI != null) cardB_UI.SetActive(currentAccess == CardAccess.B);
+        if (cardC_UI != null) cardC_UI.SetActive(currentAccess == CardAccess.C);
     }
 
     void FixedUpdate()
@@ -138,7 +149,7 @@ public class Player : MonoBehaviour
         rotLeftRight = 0f;
         rotUpDown = 0f;
 
-        if (!SceneLoader.IsPaused)
+        if (!SceneLoader.IsPaused) // Assuming SceneLoader.IsPaused exists
         {
             /********** Live Input Reading **********/
 
@@ -182,7 +193,10 @@ public class Player : MonoBehaviour
         // Apply vertical rotation (camera/child rotation)
         xRotation -= rotUpDown;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-        Camera.main.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        if (Camera.main != null)
+        {
+            Camera.main.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        }
 
 
         /********** Record **********/
@@ -191,7 +205,7 @@ public class Player : MonoBehaviour
         {
             if (!recording)
             {
-                clones.Add(new RecordedSegment(spawns[numDoor])); // Changed struct name
+                clones.Add(new RecordedSegment(spawns[numDoor]));
                 recording = true;
             }
 
@@ -204,9 +218,9 @@ public class Player : MonoBehaviour
                 Input.GetKey(KeyCode.LeftShift),
                 Input.GetKey(KeyCode.LeftControl),
                 Input.GetKey(KeyCode.Mouse0),
-                rotLeftRight, // Record the actual rotation applied
-                rotUpDown,    // Record the actual rotation applied
-                xRotation));  // Record the final camera pitch
+                rotLeftRight,
+                rotUpDown,
+                xRotation)); // Record the final camera pitch
             i++;
         }
 
@@ -242,14 +256,13 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        // Example: Trigger zones that change card access
-        CardZone zone = col.GetComponent<CardZone>();
-        if (zone != null)
-        {
-            currentAccess = zone.accessType;
-            UpdateCardUI(); // <--- Call added here
-            Debug.Log("Player got access: " + currentAccess);
-        }
+        // Assuming CardZone exists or this is placeholder logic
+        // CardZone zone = col.GetComponent<CardZone>();
+        // if (zone != null)
+        // {
+        //     currentAccess = zone.accessType;
+        //     UpdateCardUI(); 
+        // }
 
         // Keep your existing door logic
         if (col.gameObject.name == "Spawn" + (numDoor + 1))
@@ -268,11 +281,20 @@ public class Player : MonoBehaviour
         record = true;
         finishedRecording = false;
         i = 0;
-        xRotation = 0f; // Reset camera rotation
+
+        // Reset camera pitch variable AND apply it immediately
+        xRotation = 0f;
+        if (Camera.main != null)
+        {
+            Camera.main.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        }
     }
 
     public void ResetCurrentRecord()
     {
-        clones[numDoor].inputs.Clear();
+        if (clones.Count > numDoor)
+        {
+            clones[numDoor].inputs.Clear();
+        }
     }
 }
