@@ -23,11 +23,13 @@ public struct RecordedSegment
 {
     public List<Inputs> inputs;
     public Transform initialPos;
+    public CardAccess accessAtStart;   // NEW
 
-    public RecordedSegment(Transform pos)
+    public RecordedSegment(Transform pos, CardAccess access)  // CHANGED
     {
         this.inputs = new List<Inputs>();
         this.initialPos = pos;
+        this.accessAtStart = access;
     }
 }
 
@@ -166,7 +168,20 @@ public class Player : MonoBehaviour
         {
             if (!recording)
             {
-                clones.Add(new RecordedSegment(spawns[numDoor]));
+                if (clones.Count <= numDoor)
+                {
+                    // First time recording this segment
+                    clones.Add(new RecordedSegment(spawns[numDoor], currentAccess));
+                }
+                else
+                {
+                    // Re-recording same segment: refresh the stored access + spawn, clear inputs
+                    var seg = clones[numDoor];
+                    seg.initialPos = spawns[numDoor];
+                    seg.accessAtStart = currentAccess;
+                    seg.inputs.Clear();
+                    clones[numDoor] = seg;
+                }
                 recording = true;
             }
 

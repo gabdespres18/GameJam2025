@@ -183,7 +183,7 @@ public class GameManager : MonoBehaviour
         c.inputs = new List<Inputs>(player.clones[index].inputs);
         c.initPos = spawn;
         c.currentDoor = index;
-        c.InitializeAccess(player.currentAccess);
+        c.InitializeAccess(player.clones[index].accessAtStart);
 
         // Ensure the clone is off and disabled for the reset process
         c.gameObject.SetActive(false);
