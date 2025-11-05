@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -128,8 +128,16 @@ public class GameManager : MonoBehaviour
         StopAllCoroutines();
         cloneCoroutines.Clear();
 
+        // (optional) close/sync door first
+        if (elevatorDoorScript != null)
+            elevatorDoorScript.ForceResetProximity();
+
+        // Reset player transform & clear current frame’s inputs
         player.Reset();
         player.ResetCurrentRecord();
+
+        // ⬅️ Restore access to what it was at the start of THIS segment
+        player.RestoreAccessAtSegmentStart();
 
         // *** CRITICAL FIX: Tell the Door to Forget Everyone ***
         if (elevatorDoorScript != null)

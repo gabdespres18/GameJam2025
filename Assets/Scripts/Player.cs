@@ -227,6 +227,15 @@ public class Player : MonoBehaviour
         animator.SetBool("IsRunning", IsRunning);
     }
 
+    public void RestoreAccessAtSegmentStart()
+    {
+        if (clones != null && clones.Count > numDoor)
+        {
+            currentAccess = clones[numDoor].accessAtStart;
+            UpdateCardUI(); // keep the UI in sync
+        }
+    }
+
     void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.name == "Spawn" + (numDoor + 1))
